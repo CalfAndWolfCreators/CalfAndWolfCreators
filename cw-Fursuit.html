@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nowa Strona</title>
+  <style>
+    body {
+      background-color: #103A0D;
+      color: #dbdbdb;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu {
+      text-align: center;
+      margin-bottom: 20px;
+      background-color: #103A0D;
+      padding: 15px 0;
+    }
+
+    .przycisk {
+      height: 40px;
+      padding: 0 25px;
+      background-color: #266b3d;
+      color: #fff;
+      border: none;
+      border-radius: 0;
+      margin: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      display: inline-block;
+      vertical-align: top;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background 0.3s;
+    }
+
+    .przycisk:hover {
+      background-color: #3a7d44;
+    }
+
+    .przycisk.active {
+      background-color: #dbdbdb;
+      color: #103A0D;
+      font-weight: bold;
+    }
+
+    .logo {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .logo img {
+      max-width: 720px;
+      width: 100%;
+      height: auto;
+      display: inline-block;
+    }
+
+    .page-title {
+  text-align: center;
+  font-size: 3.2rem;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  color: #dbdbdb;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  margin: 50px 0 80px;
+  letter-spacing: 1px;
+}
+
+.box-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 1500px;
+ margin: 0 auto 30px auto;
+  justify-items: center;
+  margin-bottom: 40px; /* odstęp między rzędami */
+}
+
+.box-container-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 960px;
+  margin: 0 auto;
+  justify-content: center;
+  gap: 30px;
+}
+
+.price-box {
+  background-color: #266b3d;
+  border: 10px solid #5c3a1a;
+  min-height: 515px;
+  padding: 20px;
+  color: #dbdbdb;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  max-width: 400px; /* dodaj max szerokość, by miały stałą szerokość */
+}
+
+.price-box h3 {
+  font-size: 1.6rem;
+  font-family: Arial, sans-serif;
+  margin: 0 0 30px;
+  border-bottom: 3px solid #dbdbdb;
+  padding-bottom: 5px;
+}
+
+.price-box p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 10px 0 0;
+}
+
+/* Kluczowe ustawienie dla wyśrodkowania 4 i 5 boxa */
+.price-box:nth-child(4) {
+  grid-column: 2;
+}
+
+.price-box:nth-child(5) {
+  grid-column: 3;
+}
+
+.page-title {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 3.2rem;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  color: #dbdbdb;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  margin: 50px 0 80px 0;
+  letter-spacing: 1px;
+  padding: 0;
+}
+
+.lightbox {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  box-shadow: 0 0 30px white;
+  cursor: zoom-out;
+}
+
+.gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1800px;
+  margin: 0 auto 40px auto;
+  justify-content: center;
+}
+
+.gallery-item {
+  position: relative;
+  flex: 1 1 calc(25% - 10px);
+  max-width: calc(25% - 10px);
+  cursor: pointer;
+  overflow: visible;
+  display: inline-block;
+}
+
+.gallery-item img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.gallery-item:hover img {
+  filter: brightness(1.2);
+  transform: scale(1.05);
+}
+
+/* Tekst pojawia się na hover */
+.gallery-item .overlay {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  color: #fff;
+  background-color: rgb(16, 58, 13);
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-family: Arial, sans-serif;
+  max-width: 90%;
+  line-height: 1.2;
+  pointer-events: none;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item .overlay .title {
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.gallery-item .overlay .price {
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.gallery-item .overlay div {
+  border: none;
+}
+
+.gallery-item:hover .overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+.gallery-item:hover img {
+  opacity: 0.8; /* efekt rozjaśnienia */
+  filter: none; /* usuń efekt rozjaśnienia */
+}
+
+.footer {
+  background-color: #103A0D; /* ciemne tło, pasujące do strony */
+  color: #dbdbdb;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 0;
+  user-select: none;
+}
+
+.grass-divider {
+  background-image: url('grass.svg');      /* użyj swojej ścieżki */
+  background-repeat: repeat-x;             /* powtarzanie tylko w poziomie */
+  background-size: auto 100%;              /* szerokość automatyczna, wysokość dopasowana */
+  height: 120px;                             /* ustaw wysokość na wysokość obrazka SVG */
+  width: 100%;
+  margin-top: 40px;
+}
+
+.footer-title {
+  font-size: 3.2rem;
+  font-weight: 900;
+  font-family: 'Arial', sans-serif;
+  color: #dbdbdb;
+  margin: 0 0 20px;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  letter-spacing: 1px;
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  color: #dbdbdb;
+}
+
+.email-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.email-text {
+  user-select: text;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  max-width: 320px;
+  margin: 0 auto 30px;
+  gap: 25px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #266b3d;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 18px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease;
+}
+
+.social-btn img {
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(0 0 1px rgba(0,0,0,0.5));
+}
+
+.social-btn:hover {
+  background-color: #3a7d44;
+}
+
+.social-btn.youtube:hover {
+  background-color: #ff0000;
+}
+
+.social-btn.telegram:hover {
+  background-color: #0088cc;
+}
+
+.social-btn.facebook:hover {
+  background-color: #1877f2;
+}
+
+.brown-bar {
+  background-color: #5c3a1a; /* brązowy pasek */
+  height: 140px;
+  color: #dbdbdb;
+  font-size: 40px;
+  font-weight: 400;
+  font-style: arial, sans-serif;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  margin-top: 20px; /* opcjonalnie, żeby odseparować od powyższego */
+  border-top: 10px solid white;
+  border-bottom: 10px solid white;
+}
+
+.commission-title {
+  font-size: 3.2rem;      /* większy niż neonowy napis */
+  font-weight: 900;
+  font-family: 'Arial', sans-serif;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  text-decoration: underline;
+  text-underline-offset: 10px; /* odstęp podkreślenia od tekstu */
+  color: #dbdbdb;
+  letter-spacing: 1px;
+}
+
+
+</style>
+  </style>
+
+  
+</head>
+<body>
+
+  <!-- Menu góra -->
+  <div class="menu">
+    <button class="przycisk" onclick="loadPage('cw-Home.html')">Home</button>
+    <button class="przycisk" onclick="loadPage('cw-Fursuit.html')">Fursuit & Fursuit parts</button>
+    <button class="przycisk" onclick="loadPage('cw-Plushies.html')">Plushies & Props</button>
+    <button class="przycisk" onclick="loadPage('cw-Merch.html')">Patches, Merch & more...</button>
+    <button class="przycisk" onclick="loadPage('cw-AboutUs.html')">About Us</button>
+    <button class="przycisk" onclick="loadPage('cw-Contact.html')">Commission / Contact / Q&A</button>
+    <button class="przycisk" onclick="loadPage('cw-Shop.html')">Our Shop</button>
+  </div>
+
+  <!-- Logo -->
+  <div class="logo">
+    <img src="logo.png" alt="Moje logo">
+  </div>
+
+    <!-- tytuł listy z cenami -->
+  <h2 class="page-title">Estimate Pricelist</h2>
+
+    <!-- bloki z cenami -->
+<div class="box-container">
+  <!-- Górny rząd - 3 boxy -->
+  <div class="price-box" style="font-size: 26px;">
+    <h3 style="font-size: 28px;">Head</h3>
+    <p style="font-size: 21px; text-decoration: underline; font-weight: bold; margin-bottom: 15px; text-align: center;">
+      Starts at 600€ (2 Fur colors & 2D Eyes)
+    </p>
+    <ul style="font-size: 21px; margin: 0 0 0 25px; padding: 0; list-style-type: disc; gap: 6px; display: flex; flex-direction: column;">
+      <li style="margin-bottom: 6px;">+35€ for every additional fur color</li>
+      <li style="margin-bottom: 6px;">+25€ for 3D eyes (Follow me Eyes)</li>
+      <li style="margin-bottom: 6px;">+100€ for Moving jaw</li>
+      <li style="margin-bottom: 6px;">+100€ for Foam base</li>
+      <li style="margin-bottom: 6px;">+15€ for Tongue</li>
+      <li style="margin-bottom: 6px;">+30€ for Teeth (15€ per side)</li>
+      <li style="margin-bottom: 6px;">+15€ for 3D printed nose</li>
+      <li style="margin-bottom: 6px;">+10€ for small horns (2 pieces)&lt;5cm</li>
+      <li style="margin-bottom: 6px;">+20€ for normal horns (2 pieces)&lt;20cm</li>
+      <li style="margin-bottom: 6px;">+30€ for big horns (2 pieces) &gt;20cm</li>
+      <li>+180€ for Hair</li>
+    </ul>
+  </div>
+
+  <div class="price-box" style="font-size: 26px;">
+    <h3 style="font-size: 28px; margin-bottom: 20px;">Hand paws</h3>
+    <p style="font-size: 21px; text-decoration: underline; font-weight: bold; margin-bottom: 15px; text-align: center;">
+      Starts at 100€ (2 Fur colors, 2 Pads colors & 4 Fingers)
+    </p>
+    <ul style="font-size: 21px; margin: 0 0 0 25px; padding: 0; list-style-type: disc; gap: 6px; display: flex; flex-direction: column;">
+      <li style="margin-bottom: 6px;">+15€ for every additional fur color</li>
+      <li style="margin-bottom: 6px;">+10€ for every additional pad color</li>
+      <li style="margin-bottom: 6px;">+20€ for fabric claws</li>
+      <li style="margin-bottom: 6px;">+40€ for 3D printed claws</li>
+      <li style="margin-bottom: 6px;">+20€ for 5-fingers paws</li>
+      <li style="margin-bottom: 6px;">+20€ for oversized paws</li>
+      <li>+15€ for stretch on the end</li>
+    </ul>
+  </div>
+
+  <div class="price-box" style="font-size: 26px;">
+    <h3 style="font-size: 28px;">Feet paws</h3>
+    <p style="font-size: 21px; text-decoration: underline; font-weight: bold; margin-bottom: 15px; text-align: center;">
+      Starts at 150€ (2 Fur colors & 2 Pads colors or outdoor sole)
+    </p>
+    <ul style="font-size: 21px; margin: 0 0 0 25px; padding: 0; list-style-type: disc; gap: 6px; display: flex; flex-direction: column;">
+      <li style="margin-bottom: 6px;">+15€ for every additional fur color</li>
+      <li style="margin-bottom: 6px;">+40€ for fabric claws</li>
+      <li style="margin-bottom: 6px;">+60€ for 3D printed claws</li>
+      <li style="margin-bottom: 6px;">+100€ for foam based paws</li>
+      <li>+25€ for stretch on the end</li>
+    </ul>
+  </div>
+</div>
+
+<div class="box-container-2">
+  <!-- Dolny rząd - 2 boxy -->
+  <div class="price-box" style="font-size: 26px;">
+    <h3 style="font-size: 28px;">Tails</h3>
+    <p style="font-size: 21px; text-decoration: underline; font-weight: bold; margin-bottom: 10px; text-align: center;">
+      Starts (with 2 Fur colors) at:
+    </p>
+    <div style="font-size: 21px; text-align: center; margin-bottom: 15px; line-height: 1.5;">
+      50€ &lt; 35cm<br />
+      100€ &lt; 80cm<br />
+      150€ &gt; 80cm
+    </div>
+    <ul style="font-size: 21px; margin: 0 0 0 25px; padding: 0; list-style-type: disc; gap: 6px; display: flex; flex-direction: column;">
+      <li style="margin-bottom: 6px;">+35€ for every additional fur color</li>
+      <li style="margin-bottom: 6px;">+15€ for small horn (&lt;5cm)</li>
+      <li style="margin-bottom: 6px;">+25€ for normal horn (&lt;20cm)</li>
+      <li style="margin-bottom: 6px;">+35€ for big horn (&gt;20cm)</li>
+      <li>+100€ for foam based tail (extra moving)</li>
+    </ul>
+  </div>
+
+  <div class="price-box" style="font-size: 26px;">
+    <h3 style="font-size: 28px;">Body</h3>
+    <p style="font-size: 21px; text-decoration: underline; font-weight: bold; margin-bottom: 15px; text-align: center;">
+      Starts at 1800€ (2 Fur colors, plantigrade)
+    </p>
+    <ul style="font-size: 21px; margin: 0 0 0 25px; padding: 0; list-style-type: disc; gap: 6px; display: flex; flex-direction: column;">
+      <li style="margin-bottom: 6px;">+50€ for every additional fur color</li>
+      <li style="margin-bottom: 6px;">+350€ for digitigrade body</li>
+      <li style="margin-bottom: 6px;">+200€ for tattoo</li>
+      <li>+250€ for stripes or spots</li>
+    </ul>
+  </div>
+</div>
+
+  <!-- Tytuł Gallery przeniesiony poza kontener -->
+<h2 class="page-title">Gallery</h2>
+
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="Lightbox Image" />
+</div>
+
+<!-- Galeria zdjęć Fursuitów -->
+<div class="gallery-grid">
+  <div class="gallery-item">
+    <img src="fursuit5.png" alt="Fursuit 5" />
+    <div class="overlay">
+      <div class="title">Fursuit 5</div>
+      <div class="price">Price: 600€</div>
+    </div>
+  </div>
+  <div class="gallery-item">
+    <img src="fursuit4.png" alt="Fursuit 4" />
+    <div class="overlay">
+      <div class="title">Fursuit 4</div>
+      <div class="price">Price: 550€</div>
+    </div>
+  </div>
+  <div class="gallery-item">
+    <img src="fursuit3.png" alt="Fursuit 3" />
+    <div class="overlay">
+      <div class="title">Fursuit 3</div>
+      <div class="price">Price: 580€</div>
+    </div>
+  </div>
+  <div class="gallery-item">
+    <img src="fursuit2.png" alt="Fursuit 2" />
+    <div class="overlay">
+      <div class="title">Fursuit 2</div>
+      <div class="price">Price: 620€</div>
+    </div>
+  </div>
+  <div class="gallery-item">
+    <img src="fursuit1.png" alt="Fursuit 1" />
+    <div class="overlay">
+      <div class="title">Fursuit 1</div>
+      <div class="price">Price: 590€</div>
+    </div>
+  </div>
+</div>
+
+<!-- Stopka strony -->
+</script>
+<!-- Pasek trawy -->
+<div class="grass-divider">
+</div>
+
+<!-- Kontakt i Social Media -->
+<footer class="footer">
+  <h2 class="commission-title">Contact & Socialmedia</h2>
+  
+  <div class="contact-info">
+    <img src="email-icon.png" alt="Email icon" class="email-icon" />
+    <span class="email-text">cw-sales@protonmail.com</span>
+  </div>
+  
+  <div class="social-buttons">
+    <a href="https://www.youtube.com/@CalfAndWolfCreators" target="_blank" class="social-btn youtube">
+      <img src="youtube-icon.png" alt="YouTube" /> Youtube
+    </a>
+    <a href="https://t.me/CalfAndWolfCreators" target="_blank" class="social-btn telegram">
+      <img src="telegram-icon.png" alt="Telegram" /> Telegram
+    </a>
+    <a href="https://www.facebook.com/CalfAndWolfCreators/" target="_blank" class="social-btn facebook">
+      <img src="facebook-icon.png" alt="Facebook" /> Facebook
+    </a>
+  </div>
+</footer>
+
+<!-- Brązowy pasek na dole -->
+<div class="brown-bar">
+  ©2024 created by Calf & Wolf creators | Fursuit makers from Germany
+</div>
+
+<script>
+function loadPage(url) {
+  fetch(url)
+    .then(response => {
+      if (!response.ok) throw new Error('Błąd ładowania strony');
+      return response.text();
+    })
+    .then(html => {
+      document.getElementById('content').innerHTML = html;
+      history.pushState(null, '', url); // zmienia URL w pasku przeglądarki bez przeładowania
+    })
+    .catch(error => {
+      document.getElementById('content').innerHTML = '<p>Nie udało się załadować strony.</p>';
+      console.error(error);
+    });
+}
+
+// Obsługa przycisku wstecz/przód przeglądarki
+window.onpopstate = () => {
+  loadPage(location.pathname.substring(1) || 'home.html');
+}
+
+</script>
+
+
