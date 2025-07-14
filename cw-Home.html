@@ -615,6 +615,37 @@ function loadPage(url) {
 window.onpopstate = () => {
   loadPage(location.pathname.substring(1) || 'home.html');
 };
+
+    function loadPage(page) {
+  const contentDiv = document.getElementById('content');
+  
+  // Wyczyść starą zawartość
+  contentDiv.innerHTML = '';
+
+  // Załaduj nowy plik HTML (zakładam, że jest w tym samym folderze)
+  fetch(page)
+    .then(response => {
+      if (!response.ok) throw new Error('Nie udało się załadować strony');
+      return response.text();
+    })
+    .then(html => {
+      contentDiv.innerHTML = html; // Wstaw nową zawartość
+      pokazSekcje(page.replace('cw-', '').replace('.html', '')); // opcjonalnie, jeśli korzystasz z pokazSekcje
+    })
+    .catch(err => {
+      contentDiv.innerHTML = '<p>Wystąpił błąd podczas ładowania strony.</p>';
+      console.error(err);
+    });
+  
+  // Aktualizuj aktywny przycisk w menu
+  const buttons = document.querySelectorAll('.przycisk');
+  buttons.forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.getAttribute('onclick').includes(page)) {
+      btn.classList.add('active');
+    }
+  });
+}
 </script>
 
 </body>
