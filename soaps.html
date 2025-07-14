@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024">
+    <title>Dokument</title>
+    <style>
+        body {
+            background-color: #103A0D;
+            color: #dbdbdb; /* domyślny kolor tekstu */
+        }
+        .menu {
+            text-align: center; /* wyśrodkowanie przycisków */
+            margin-bottom: 20px;
+        }
+        .przycisk {
+            height: 40px;
+            padding: 0 25px;
+            background-color: #266b3d;
+            color: #fff;
+            border: none;
+            border-radius: 0;
+            margin: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: top;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: background 0.3s;
+        }
+        .przycisk:hover {
+            background-color: #3a7d44;
+        }
+        .przycisk.active {
+            background-color: #dbdbdb; /* jaśniejszy kolor */
+            color: #103A0D;            /* zielony jak tło */
+            font-weight: bold;         /* opcjonalnie pogrubienie */
+        }
+        .logo {
+            margin: 10px auto 30px auto; /* 10px odstępu od menu, 30px pod logo */
+            text-align: center;
+        }
+        .logo img {
+            max-width: 660px; /* 300% poprzedniego rozmiaru */
+            width: 100%;
+            height: auto;
+            display: inline-block;
+        }
+
+.commission-title {
+            font-size: 3.2rem;      /* większy niż neonowy napis */
+            font-weight: 900;
+            font-family: 'Arial', sans-serif;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            text-decoration: underline;
+            text-underline-offset: 10px; /* odstęp podkreślenia od tekstu */
+            color: #dbdbdb;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+.box-container-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 960px;
+  min-width: 750px;
+  margin: 0 auto 40px auto;
+  gap: 30px;
+  justify-content: center;
+}
+
+.price-box {
+  background-color: #266b3d;      /* ciemniejsza zieleń */
+  border: 10px solid #5c3a1a;     /* brązowa ramka */
+  min-height: 300px;
+  padding: 20px;
+  color: #dbdbdb;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  max-width: 350px;
+  font-size: 26px;
+}
+
+.price-box h3 {
+  font-size: 33px;
+  text-align: center;
+  margin-bottom: 15px;
+  text-decoration: underline;
+}
+
+.price-box p {
+  font-size: 26px;
+  text-decoration: underline;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.price-box div {
+  font-size: 26px;
+  text-align: center;
+  line-height: 1;
+}
+
+.price-box span {
+  font-size: 26px;
+  display: block;
+  margin-top: -12px
+}
+
+.footer {
+  background-color: #103A0D; /* ciemne tło, pasujące do strony */
+  color: #dbdbdb;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 0;
+  user-select: none;
+}
+
+.grass-divider {
+  background-image: url('grass.svg');      /* użyj swojej ścieżki */
+  background-repeat: repeat-x;             /* powtarzanie tylko w poziomie */
+  background-size: auto 100%;              /* szerokość automatyczna, wysokość dopasowana */
+  height: 120px;                             /* ustaw wysokość na wysokość obrazka SVG */
+  width: 100%;
+  margin-top: 40px;
+}
+
+.footer-title {
+  font-size: 3.2rem;
+  font-weight: 900;
+  font-family: 'Arial', sans-serif;
+  color: #dbdbdb;
+  margin: 0 0 20px;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  letter-spacing: 1px;
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  color: #dbdbdb;
+}
+
+.email-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.email-text {
+  user-select: text;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  max-width: 320px;
+  margin: 0 auto 30px;
+  gap: 25px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #266b3d;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 18px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease;
+}
+
+.social-btn img {
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(0 0 1px rgba(0,0,0,0.5));
+}
+
+.social-btn:hover {
+  background-color: #3a7d44;
+}
+
+.social-btn.youtube:hover {
+  background-color: #ff0000;
+}
+
+.social-btn.telegram:hover {
+  background-color: #0088cc;
+}
+
+.social-btn.facebook:hover {
+  background-color: #1877f2;
+}
+
+.brown-bar {
+  background-color: #5c3a1a; /* brązowy pasek */
+  height: 140px;
+  color: #dbdbdb;
+  font-size: 40px;
+  font-weight: 400;
+  font-style: arial, sans-serif;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  margin-top: 20px; /* opcjonalnie, żeby odseparować od powyższego */
+  border-top: 10px solid white;
+  border-bottom: 10px solid white;
+}
+    </style>
+    
+    
+</head>
+<body>
+
+<!-- Menu góra -->
+<div class="menu">
+   <button class="przycisk" onclick="loadPage('cw-Home.html')">Home</button>
+  <button class="przycisk" onclick="loadPage('cw-Fursuit.html')">Fursuit & Fursuit parts</button>
+  <button class="przycisk" onclick="loadPage('cw-Plushies.html')">Plushies & Props</button>
+  <button class="przycisk" onclick="loadPage('cw-Merch.html')">Patches, Merch & more...</button>
+  <button class="przycisk" onclick="loadPage('cw-AboutUs.html')">About Us</button>
+  <button class="przycisk" onclick="loadPage('cw-Contact.html')">Commission / Contact / Q&A</button>
+  <button class="przycisk" onclick="loadPage('cw-Shop.html')">Our Shop</button>
+</div>
+
+<div id="content">
+</div>
+
+<div class="logo">
+    <img src="logo.png" alt="Moje logo" style="max-width: 720px; display: block; margin: 30px auto;">
+</div>
+
+<div class="commission-title"  >
+    <p>Soaps</p>
+    </div>
+    <span style="font-size: 2em; text-decoration: none; display: block; margin-bottom: 10px; text-align: center;">
+    !The colors may <span style="text-decoration: underline;">not</span> be exactly the same as shown on the website!
+    </div>
+
+<!-- Kontener z boxami -->
+<div style="display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; margin-top: 40px;">
+  <div class="box-container-2">
+    <!-- Soap Colors -->
+    <div class="price-box">
+      <h3>Colors</h3>
+      <div>
+        <span style="color: rgb(255, 247, 0);">Lemon</span><br />
+        <span style="color: rgb(253, 190, 2);">Mango</span><br />
+        <span style="color: rgb(255, 168, 2);">Tangerine</span><br />
+        <span style="color: rgb(144, 120, 2);">Passion Fruit</span><br />
+        <span style="color: rgb(111, 78, 55);">Coffee</span><br />
+        <span style="color: #88ff00;">Lime</span><br />
+        <span style="color: #237c2b;">Kiwi</span><br />
+        <span style="color: #285336;">Clover</span><br />
+        <span style="color: #0f3d28;">Avocado</span><br />
+        <span style="color: #41beae;">Turquoise</span><br />
+        <span style="color: #3c94c7;">Forget me not</span><br />
+        <span style="color: #1f0a57;">Blubberry</span><br />
+        <span style="color: #2e0f57;">Grape</span><br />
+        <span style="color: #5b0f57;">Violet</span><br />
+        <span style="color: #4b0929;">Lavender</span><br />
+        <span style="color: #852670;">Fuchsia</span><br />
+        <span style="color: #a70f57;">Rose</span><br />
+        <span style="color: #e43f7b;">Peach</span><br />
+        <span style="color: #fc3200;">Cherry</span><br />
+        <span style="color: #272626;">Black Currant</span>
+      </div>
+    </div>
+
+    <!-- Soap smell -->
+    <div class="price-box">
+  <h3>Scents</h3>
+  <div>
+    <span style="color: #E29578;">Caramel</span><br />
+    <span style="color: #ffffff;">Milk</span><br />
+    <span style="color: #f1d26a;">Honey</span><br />
+    <span style="color: #4d2d03;">Chocolate</span><br />
+    <span style="color: #8fc47a;">Mung beans</span><br />
+    <span style="color: #fde370;">Green Tea</span><br />
+    <span style="color: #FBC4AB;">Wheat</span><br />
+    <span style="color: #f1ffb5;">Vanilla</span><br />
+    <span style="color: #71d8f7;">Osmanthus</span><br />
+    <span style="color: #ffb0ee;">Orchid</span><br />
+    <span style="color: #f88e78;">Tulp</span><br />
+    <span style="color: #f282b1;">Rose</span><br />
+    <span style="color: #c2c2c2;">Jasmine</span><br />
+    <span style="color: #CDB4DB;">Lavender</span><br />
+    <span style="color: #BDE0FE;">Gardenia</span><br />
+    <span style="color: #81B29A;">Mint</span><br />
+    <span style="color: #927e63;">Coconut</span><br />
+    <span style="color: #fc9797;">Apple</span><br />
+    <span style="color: #D0A2F7;">Grape</span><br />
+    <span style="color: #dd7676;">Watermelon</span><br />
+    <span style="color: #E0BBE4;">Taro</span><br />
+    <span style="color: #f5b561;">Orange</span><br />
+    <span style="color: #f7af71;">Tangerine</span><br />
+    <span style="color: #f55a5a;">Strawberry</span><br />
+    <span style="color: #a89ac9;">Passion fruit</span><br />
+    <span style="color: #FFF275;">Lemon</span><br />
+    <span style="color: #f87696;">Jujuble</span><br />
+    <span style="color: #ecb27b;">Peach</span><br />
+    <span style="color: #FFE066;">Pineapple</span><br />
+    <span style="color: #f7d35e;">Banana</span><br />
+    <span style="color: #A0C4FF;">Bluberry</span><br />
+    <span style="color: #fa849a;">Litchi</span>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- Stopka -->
+</script>
+<!-- Pasek trawy -->
+<div class="grass-divider">
+</div>
+
+<!-- Kontakt i Social Media -->
+<footer class="footer">
+  <h2 class="commission-title">Contact & Socialmedia</h2>
+  
+  <div class="contact-info">
+    <img src="email-icon.png" alt="Email icon" class="email-icon" />
+    <span class="email-text">cw-sales@protonmail.com</span>
+  </div>
+  
+  <div class="social-buttons">
+    <a href="https://www.youtube.com/@CalfAndWolfCreators" target="_blank" class="social-btn youtube">
+      <img src="youtube-icon.png" alt="YouTube" /> Youtube
+    </a>
+    <a href="https://t.me/CalfAndWolfCreators" target="_blank" class="social-btn telegram">
+      <img src="telegram-icon.png" alt="Telegram" /> Telegram
+    </a>
+    <a href="https://www.facebook.com/CalfAndWolfCreators/" target="_blank" class="social-btn facebook">
+      <img src="facebook-icon.png" alt="Facebook" /> Facebook
+    </a>
+  </div>
+</footer>
+
+<!-- Brązowy pasek na dole -->
+<div class="brown-bar">
+  ©2024 created by Calf & Wolf creators | Fursuit makers from Germany
+</div>
+
+<script>
+function loadPage(url) {
+  fetch(url)
+    .then(res => {
+      if (!res.ok) {
+        // Jeśli strona nie istnieje (np. 404), załaduj 404.html
+        return fetch('404.html').then(res404 => res404.text());
+      }
+      return res.text();
+    })
+    .then(html => {
+      document.getElementById('content').innerHTML = html;
+    })
+    .catch(error => {
+      // Na wypadek innych błędów (np. sieć)
+      fetch('404.html')
+        .then(res404 => res404.text())
+        .then(html => {
+          document.getElementById('content').innerHTML = html;
+        });
+    });
+}
+
+// Obsługa przycisku wstecz/przód przeglądarki
+window.onpopstate = () => {
+  loadPage(location.pathname.substring(1) || 'home.html');
+};
+</script>
+
+</body>
+</html>
