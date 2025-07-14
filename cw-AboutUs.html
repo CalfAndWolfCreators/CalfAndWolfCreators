@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024">
+    <title>Dokument</title>
+    <style>
+        body {
+            background-color: #103A0D;
+            color: #dbdbdb; /* domyślny kolor tekstu */
+        }
+        .menu {
+            text-align: center; /* wyśrodkowanie przycisków */
+            margin-bottom: 20px;
+        }
+        .przycisk {
+            height: 40px;
+            padding: 0 25px;
+            background-color: #266b3d;
+            color: #fff;
+            border: none;
+            border-radius: 0;
+            margin: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: top;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: background 0.3s;
+        }
+        .przycisk:hover {
+            background-color: #3a7d44;
+        }
+        .przycisk.active {
+            background-color: #dbdbdb; /* jaśniejszy kolor */
+            color: #103A0D;            /* zielony jak tło */
+            font-weight: bold;         /* opcjonalnie pogrubienie */
+        }
+        .logo {
+            margin: 10px auto 30px auto; /* 10px odstępu od menu, 30px pod logo */
+            text-align: center;
+        }
+        .logo img {
+            max-width: 660px; /* 300% poprzedniego rozmiaru */
+            width: 100%;
+            height: auto;
+            display: inline-block;
+        }
+
+        .commission-title {
+            font-size: 3.2rem;      /* większy niż neonowy napis */
+            font-weight: 900;
+            font-family: 'Arial', sans-serif;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            text-decoration: underline;
+            text-underline-offset: 10px; /* odstęp podkreślenia od tekstu */
+            color: #dbdbdb;
+            letter-spacing: 1px;
+        }
+
+        .section-subtitle {
+    font-size: 2rem;              /* mniejszy niż About Us */
+    font-weight: 700;
+    font-family: 'Arial', sans-serif;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    color: #dbdbdb;
+    letter-spacing: 0.5px;
+    margin: 50px 0;
+
+    /* Nowe ustawienie położenia */
+    width: fit-content;
+    margin-left: 20%;               /* zaczyna się w 1/4 strony */
+}
+
+.section-subtitle-text {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'Arial', sans-serif;
+    color: #dbdbdb;
+    letter-spacing: 0.5px;
+
+    margin-top: 50px;      /* odstęp u góry, działa bezpośrednio */
+    margin-bottom: 10px;   /* odstęp na dole */
+
+    line-height: 1.3;      /* normalny odstęp między liniami, a nie 0.3 */
+    
+    width: fit-content;
+    margin-left: 20%;
+    margin-right: 20%;      /* przesunięcie w prawo o 20% */
+}
+
+.section-subtitle-text p {
+    margin: 5px 0;         /* mniejsze odstępy między paragrafami */
+}
+
+.section-subtitle-text a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.footer {
+  background-color: #103A0D; /* ciemne tło, pasujące do strony */
+  color: #dbdbdb;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 0;
+  user-select: none;
+}
+
+.grass-divider {
+  background-image: url('grass.svg');      /* użyj swojej ścieżki */
+  background-repeat: repeat-x;             /* powtarzanie tylko w poziomie */
+  background-size: auto 100%;              /* szerokość automatyczna, wysokość dopasowana */
+  height: 120px;                             /* ustaw wysokość na wysokość obrazka SVG */
+  width: 100%;
+  margin-top: 40px;
+}
+
+.footer-title {
+  font-size: 3.2rem;
+  font-weight: 900;
+  font-family: 'Arial', sans-serif;
+  color: #dbdbdb;
+  margin: 0 0 20px;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  letter-spacing: 1px;
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  color: #dbdbdb;
+}
+
+.email-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.email-text {
+  user-select: text;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  max-width: 320px;
+  margin: 0 auto 30px;
+  gap: 25px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #266b3d;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 18px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease;
+}
+
+.social-btn img {
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(0 0 1px rgba(0,0,0,0.5));
+}
+
+.social-btn:hover {
+  background-color: #3a7d44;
+}
+
+.social-btn.youtube:hover {
+  background-color: #ff0000;
+}
+
+.social-btn.telegram:hover {
+  background-color: #0088cc;
+}
+
+.social-btn.facebook:hover {
+  background-color: #1877f2;
+}
+
+.brown-bar {
+  background-color: #5c3a1a; /* brązowy pasek */
+  height: 140px;
+  color: #dbdbdb;
+  font-size: 40px;
+  font-weight: 400;
+  font-style: arial, sans-serif;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  margin-top: 20px; /* opcjonalnie, żeby odseparować od powyższego */
+  border-top: 10px solid white;
+  border-bottom: 10px solid white;
+}
+        </style>
+</head>
+<body>
+    
+    <!-- Menu góra -->
+<div class="menu">
+   <button class="przycisk" onclick="loadPage('cw-Home.html')">Home</button>
+  <button class="przycisk" onclick="loadPage('cw-Fursuit.html')">Fursuit & Fursuit parts</button>
+  <button class="przycisk" onclick="loadPage('cw-Plushies.html')">Plushies & Props</button>
+  <button class="przycisk" onclick="loadPage('cw-Merch.html')">Patches, Merch & more...</button>
+  <button class="przycisk" onclick="loadPage('cw-AboutUs.html')">About Us</button>
+  <button class="przycisk" onclick="loadPage('cw-Contact.html')">Commission / Contact / Q&A</button>
+  <button class="przycisk" onclick="loadPage('cw-Shop.html')">Our Shop</button>
+</div>
+
+<div id="content">
+</div>
+
+<div class="logo">
+    <img src="logo.png" alt="Moje logo" style="max-width: 720px; display: block; margin: 30px auto;">
+</div>
+
+<div style="text-align: center;">
+    <h2 class="commission-title">About Us</h2>
+</div>
+
+<div style="margin-top: 50px;">
+  <h3 class="section-subtitle">Contact Information</h3>
+</div>
+
+<h3 class="section-subtitle">Calf & Wolf creators</h3>
+
+<div class="section-subtitle-text">
+    <p>Email: cw-sales@protonmail.com</p>
+    <p>Telegram: <a href="https://t.me/CalfAndWolfCreators" target="_blank" rel="noopener noreferrer">https://t.me/CalfAndWolfCreators</a></p>
+    </div>
+
+<div class="section-subtitle-text" style="margin-top: 50px;">
+        <p>Registered in Germany</p>
+        <p>Company Name: Calf & Wolf creators</p>
+        <p>Registered Office: Wesel 46483</p>
+        </div>
+
+<div class="section-subtitle-text" style="margin-top: 50px;">
+    <p>Owner: Dominika Lenska, known in the fandom as "<a href="https://t.me/BorysTheCalf" target="_blank" rel="noopener noreferrer">Borys the Calf</a>"</p>
+    </div>
+
+ <div class="section-subtitle-text" style="margin-top: 50px;">
+        <p>If you have any questions or concerns regarding the content of this website, please contact Dominika Lenska <a href="https://t.me/BorysTheCalf" target="_blank" rel="noopener noreferrer">( Borys the Calf )</a> at the provided <a href="cw-sales@protonmail.com" target="_blank" rel="noopener noreferrer">email address</a>.</p>
+        </div>
+
+<div class="section-subtitle-text" style="margin-top: 50px;">
+    <p>Please note that our company currently does not have a physical address, phone, or fax. We can be reached through the <a href="cw-sales@protonmail.com" target="_blank" rel="noopener noreferrer">email address</a> or <a href="https://t.me/CalfAndWolfCreators" target="_blank" rel="noopener noreferrer">Telegram</a> provided above.</p>
+    </div>
+
+<div class="section-subtitle-text" style="margin-top: 50px;">
+        <p>If you have feedback for us or ideas to help us improve, please feel free to send an <a href="cw-sales@protonmail.com" target="_blank" rel="noopener noreferrer">email</a> or message us on <a href="https://t.me/CalfAndWolfCreators" target="_blank" rel="noopener noreferrer">Telegram</a>. As a token of appreciation for your feedback on commissions, we will send you a small gift or coupon for your next commission (limited to one per commission).</p>
+        </div>
+
+        <div class="section-subtitle" style="margin-top: 50px;">
+            <p>General Terms and Conditions (AGB)</p>
+            </div>
+
+<div class="section-subtitle-text" style="margin-top: 50px ;">
+    <p><span style="text-decoration: underline;">Scope</span><br>
+These Terms and Conditions apply to all contracts between the customer and Calf & Wolf Creators for the purchase of custom-made products such as fursuits, clothing, plush toys, embroidered items, pins, and soaps. All orders are handled on an individual basis following personal consultation.</p>
+</div>
+
+<div class="section-subtitle-text" style="margin-top: 50px;">
+    <p><span style="text-decoration: underline;">Custom-Made Products</span><br>
+        <p>1.1 All orders placed with Calf & Wolf Creators are custom-made to the customer's specifications.</p>
+        <p>1.2 In accordance with Section 312d Paragraph 4 of the German Civil Code, the right of withdrawal does not apply to custom-made products. Therefore, returns and refunds are not possible once the order is confirmed.</p>
+        <p>1.3 Cancellation and Refunds:</p>
+        <p style="margin-left: 1em;">1.3.a If the customer decides to cancel the order after having paid less than 50% of the total price, they are entitled to a refund amounting to 15% of the sum already paid.</p>
+        <p style="margin-left: 1em;">1.3.b If the customer has already paid 50% or more of the total price, and materials have been ordered or production has commenced, no refunds will be granted. This condition is based on Section 312g Paragraph 2 No. 1 of the German Civil Code.</p>
+    </div>
+
+
+<div class="section-subtitle-text" style="margin-top: 50px ;">
+    <p><span style="text-decoration: underline;">Payment</span><br>
+        <p>2.1 Payment can be made via PayPal or bank transfer.</p>
+        <p style="margin-left: 1em;"></pstyle>2.1.a In case of payment via PayPal, a 5% surcharge will be added to each installment/payment.</p>
+        <p>2.2 Bank transfer details will be provided to the customer personally after the consultation has been completed.</p>
+        <p>2.3 The agreed payment (full amount or installment) is due by the date mutually agreed upon in the consultation. If the customer fails to make the payment by that date, Calf & Wolf Creators reserves the right to postpone the start of production for up to two years from the original agreed date, at Calf & Wolf Creators sole discretion.</p>
+    </div>
+
+<div class="section-subtitle-text" style="margin-top: 50px ;">
+    <p><span style="text-decoration: underline;">Physical Products</span><br>
+        <p>3.1 For physical products, such as fursuit components or plush toys, the customer may submit a complaint within one year of purchase if defects in materials or workmanship are found.</p>
+        <p>3.2 Calf & Wolf Creators will cover the costs of repairs for valid complaints, but the customer is responsible for the shipping costs for both sending and returning the product.</p>
+    </div>
+
+<div class="section-subtitle-text" style="margin-top: 50px ;">
+    <p><span style="text-decoration: underline;">Warranty and Repairs</span><br>
+        <p>4.1 The warranty period for repairs is one year from the date of purchase.</p>
+        <p>4.2 The warranty covers defects in materials and workmanship but does not cover damages caused by improper use, accidents, or customer modifications.</p>
+    </div>
+
+<div class="section-subtitle-text" style="margin-top: 50px ;">
+    <p><span style="text-decoration: underline;">Liability</span><br>
+        <p>Calf & Wolf Creators is not liable for any indirect, incidental, or consequential damages arising from the use of our products.</p>
+    </div>
+
+<div class="section-subtitle-text" style="margin-top: 50px ;">
+    <p><span style="text-decoration: underline;">Final Provisions</span><br>
+        <p>6.1 These Terms and Conditions are governed by the laws of Germany.</p>
+        <p>6.2 Any disputes arising from these Terms and Conditions will be subject to the exclusive jurisdiction of the courts in Wesel, Germany.</p>
+        <p>6.3 If any provision of these Terms and Conditions becomes invalid, it will not affect the validity of the remaining provisions.</p>
+    </div>
+
+<div class="section-subtitle-text" style="margin-top: 50px ;">
+    <p><span style="text-decoration: underline;">Acceptance of Terms</span><br>
+        <p>By placing an order with Calf & Wolf Creators, the customer confirms that they have read, understood, and accepted these General Terms and Conditions.</p>
+    </div>
+
+<div class="section-subtitle-text" style="margin-top: 50px ;">
+    <p><span style="text-decoration: underline;">Contact Information</span><br>
+        <p>For questions or concerns regarding these Terms and Conditions, please contact us via:</p>
+        <p style="margin-left: 1em;"></pstyle><a href="https://t.me/CalfAndWolfCreators" target="_blank" rel="noopener noreferrer">Telegram</a></p>
+        <p style="margin-left: 1em;"></pstyle>Email: cw-sales@protonmail.com</p>
+    </div>
+
+<!-- Stopka -->
+</script>
+<!-- Pasek trawy -->
+<div class="grass-divider">
+</div>
+
+<!-- Kontakt i Social Media -->
+<footer class="footer">
+  <h2 class="commission-title">Contact & Socialmedia</h2>
+  
+  <div class="contact-info">
+    <img src="email-icon.png" alt="Email icon" class="email-icon" />
+    <span class="email-text">cw-sales@protonmail.com</span>
+  </div>
+  
+  <div class="social-buttons">
+    <a href="https://www.youtube.com/@CalfAndWolfCreators" target="_blank" class="social-btn youtube">
+      <img src="youtube-icon.png" alt="YouTube" /> Youtube
+    </a>
+    <a href="https://t.me/CalfAndWolfCreators" target="_blank" class="social-btn telegram">
+      <img src="telegram-icon.png" alt="Telegram" /> Telegram
+    </a>
+    <a href="https://www.facebook.com/CalfAndWolfCreators/" target="_blank" class="social-btn facebook">
+      <img src="facebook-icon.png" alt="Facebook" /> Facebook
+    </a>
+  </div>
+</footer>
+
+<!-- Brązowy pasek na dole -->
+<div class="brown-bar">
+  ©2024 created by Calf & Wolf creators | Fursuit makers from Germany
+</div>
+
+<script>
+function loadPage(url) {
+  fetch(url)
+    .then(res => {
+      if (!res.ok) {
+        // Jeśli strona nie istnieje (np. 404), załaduj 404.html
+        return fetch('404.html').then(res404 => res404.text());
+      }
+      return res.text();
+    })
+    .then(html => {
+      document.getElementById('content').innerHTML = html;
+    })
+    .catch(error => {
+      // Na wypadek innych błędów (np. sieć)
+      fetch('404.html')
+        .then(res404 => res404.text())
+        .then(html => {
+          document.getElementById('content').innerHTML = html;
+        });
+    });
+}
+
+// Obsługa przycisku wstecz/przód przeglądarki
+window.onpopstate = () => {
+  loadPage(location.pathname.substring(1) || 'home.html');
+};
+</script>
+
+</body>
+</html>
