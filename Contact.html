@@ -259,13 +259,13 @@ textarea:invalid {
 
     <!-- Menu góra -->
 <div class="menu">
-   <button class="przycisk" onclick="loadPage('cw-Home.html')">Home</button>
-  <button class="przycisk" onclick="loadPage('cw-Fursuit.html')">Fursuit & Fursuit parts</button>
-  <button class="przycisk" onclick="loadPage('cw-Plushies.html')">Plushies & Props</button>
-  <button class="przycisk" onclick="loadPage('cw-Merch.html')">Patches, Merch & more...</button>
-  <button class="przycisk" onclick="loadPage('cw-AboutUs.html')">About Us</button>
-  <button class="przycisk" onclick="loadPage('cw-Contact.html')">Commission / Contact / Q&A</button>
-  <button class="przycisk" onclick="loadPage('cw-Shop.html')">Our Shop</button>
+    <a class="przycisk" href="Home.html">Home</a>
+  <a class="przycisk" href="Fursuit.html">Fursuit & Fursuit parts</a>
+  <a class="przycisk" href="Plushies.html">Plushies & Props</a>
+  <a class="przycisk" href="Merch.html">Patches, Merch & more...</a>
+  <a class="przycisk" href="AboutUs.html">About Us</a>
+  <a class="przycisk" href="Contact.html">Commission / Contact / Q&A</a>
+  <a class="przycisk" href="Shop.html">Our Shop</a>
 </div>
 
 <div id="content">
@@ -370,35 +370,6 @@ textarea:invalid {
 <div class="brown-bar">
   ©2024 created by Calf & Wolf creators | Fursuit makers from Germany
 </div>
-
-<script>
-function loadPage(url) {
-  fetch(url)
-    .then(res => {
-      if (!res.ok) {
-        // Jeśli strona nie istnieje (np. 404), załaduj 404.html
-        return fetch('404.html').then(res404 => res404.text());
-      }
-      return res.text();
-    })
-    .then(html => {
-      document.getElementById('content').innerHTML = html;
-    })
-    .catch(error => {
-      // Na wypadek innych błędów (np. sieć)
-      fetch('404.html')
-        .then(res404 => res404.text())
-        .then(html => {
-          document.getElementById('content').innerHTML = html;
-        });
-    });
-}
-
-// Obsługa przycisku wstecz/przód przeglądarki
-window.onpopstate = () => {
-  loadPage(location.pathname.substring(1) || 'home.html');
-};
-</script>
 
 </body>
 </html>
