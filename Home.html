@@ -357,7 +357,7 @@
   color: #dbdbdb;
   font-size: 40px;
   font-weight: 400;
-  font-style: arial, sans-serif;
+  font-style: Arial, sans-serif;
   box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
   display: flex;
   align-items: center;
@@ -432,22 +432,22 @@
 </div>
 
 <script>
+  function pokazSekcje(id) {
+  // Ukryj wszystkie sekcje (jeśli masz wiele sekcji do ukrycia)
+  const sekcje = document.querySelectorAll('section'); // lub inny selektor
+  sekcje.forEach(sekcja => sekcja.style.display = 'none');
+
   // Pokaż wybraną sekcję
-  document.getElementById(id).style.display = 'block';
+  const wybrana = document.getElementById(id);
+  if (wybrana) wybrana.style.display = 'block';
 
   // Usuń klasę 'active' z wszystkich przycisków
   const przyciski = document.querySelectorAll('.przycisk');
-  przyciski.forEach(function(przycisk) {
-    przycisk.classList.remove('active');
-  });
+  przyciski.forEach(przycisk => przycisk.classList.remove('active'));
 
   // Dodaj klasę 'active' do klikniętego przycisku
-  const aktywnyPrzycisk = Array.from(przyciski).find(przycisk => {
-    return przycisk.getAttribute('onclick').includes(id);
-  });
-  if (aktywnyPrzycisk) {
-    aktywnyPrzycisk.classList.add('active');
-  }
+  const aktywnyPrzycisk = Array.from(przyciski).find(przycisk => przycisk.getAttribute('href').includes(id));
+  if (aktywnyPrzycisk) aktywnyPrzycisk.classList.add('active');
 }
 
 // Galeria commission i obrazki
