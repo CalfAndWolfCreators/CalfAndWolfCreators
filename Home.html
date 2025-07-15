@@ -432,20 +432,6 @@
 </div>
 
 <script>
-function pokazSekcje(id) {
-  // Lista wszystkich sekcji
-  const sekcje = [
-    'Home', 'Fursuit', 'Plushies', 'Merch', 'AboutUs', 'Contact', 'Shop'
-  ];
-  // Ukryj wszystkie sekcje
-  sekcje.forEach(function(nazwa) {
-  const el = document.getElementById(nazwa);
-  if (el) {
-    el.style.display = 'none';
-  } else {
-    console.warn(`Element o id "${nazwa}" nie został znaleziony w DOM.`);
-  }
-});
   // Pokaż wybraną sekcję
   document.getElementById(id).style.display = 'block';
 
