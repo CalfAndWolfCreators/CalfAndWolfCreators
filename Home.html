@@ -36,6 +36,12 @@
             color: #103A0D;            /* zielony jak tło */
             font-weight: bold;         /* opcjonalnie pogrubienie */
         }
+
+        a.przycisk {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
         .logo {
             margin: 10px auto 30px auto; /* 10px odstępu od menu, 30px pod logo */
             text-align: center;
@@ -369,12 +375,12 @@
 
 <!-- Menu góra -->
 <div class="menu">
-  <button class="przycisk" onclick="loadPage('Fursuit.html')">Fursuit & Fursuit parts</button>
-  <button class="przycisk" onclick="loadPage('Plushies.html')">Plushies & Props</button>
-  <button class="przycisk" onclick="loadPage('Merch.html')">Patches, Merch & more...</button>
-  <button class="przycisk" onclick="loadPage('AboutUs.html')">About Us</button>
-  <button class="przycisk" onclick="loadPage('Contact.html')">Commission / Contact / Q&A</button>
-  <button class="przycisk" onclick="loadPage('Shop.html')">Our Shop</button>
+  <a class="przycisk" href="Fursuit.html">Fursuit & Fursuit parts</a>
+  <a class="przycisk" href="Plushies.html">Plushies & Props</a>
+  <a class="przycisk" href="Merch.html">Patches, Merch & more...</a>
+  <a class="przycisk" href="AboutUs.html">About Us</a>
+  <a class="przycisk" href="Contact.html">Commission / Contact / Q&A</a>
+  <a class="przycisk" href="Shop.html">Our Shop</a>
 </div>
 
 <div id="content">
