@@ -647,33 +647,4 @@
 </div>
 
 <script>
-function loadPage(url) {
-  fetch(url)
-    .then(res => {
-      if (!res.ok) {
-        // Jeśli strona nie istnieje (np. 404), załaduj 404.html
-        return fetch('404.html').then(res404 => res404.text());
-      }
-      return res.text();
-    })
-    .then(html => {
-      document.getElementById('content').innerHTML = html;
-    })
-    .catch(error => {
-      // Na wypadek innych błędów (np. sieć)
-      fetch('404.html')
-        .then(res404 => res404.text())
-        .then(html => {
-          document.getElementById('content').innerHTML = html;
-        });
-    });
-}
-
-// Obsługa przycisku wstecz/przód przeglądarki
-window.onpopstate = () => {
-  loadPage(location.pathname.substring(1) || 'home.html');
-}
-
-</script>
-
 
