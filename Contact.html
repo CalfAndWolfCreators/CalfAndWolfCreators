@@ -123,28 +123,6 @@ textarea:invalid {
   border: 2px solid rgba(204, 68, 68, 0.5);              /* opcjonalnie lekka czerwona ramka */
 }
 
-.decor-right {
-  position: absolute;
-  top: 350px;
-  right: 300px;
-  width: 350px;
-  transform: rotate(-5deg);
-  opacity: 0.9;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.decor-left {
-  position: absolute;
-  bottom: 50px;
-  left: 55px;
-  width: 600px;
-  transform: rotate(6deg);
-  opacity: 0.9;
-  pointer-events: none;
-  z-index: 1;
-}
-
 .footer {
   background-color: #103A0D; /* ciemne tło, pasujące do strony */
   color: #dbdbdb;
@@ -317,9 +295,6 @@ textarea:invalid {
 </form>
 </div>
 
-<img src="right-image.png" alt="" class="decor-right">
-<img src="left-image.png" alt="" class="decor-left">
-
 <script>
   function validateForm() {
     const emailField = document.getElementById("email");
@@ -378,6 +353,7 @@ textarea:invalid {
 
 </body>
 </html>
+
 
 
 
