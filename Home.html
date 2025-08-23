@@ -248,14 +248,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 320px;
+  width: auto;
   box-sizing: border-box;
 }
 
 .hot-item img {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
+  height: 320px;      /* stała wysokość dla wszystkich */
+  width: auto;        /* szerokość automatyczna */
+  max-width: 100%;    /* nie przekracza ramki */
+  object-fit: cover;  /* wypełnia ramkę, zachowuje proporcje */
   border-radius: 8px;
   margin-bottom: 12px;
   border: none;
@@ -703,6 +704,7 @@ window.onpopstate = () => {
 
 </body>
 </html>
+
 
 
 
