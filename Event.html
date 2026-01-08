@@ -84,6 +84,25 @@ body {
     margin-bottom: 40px; /* większy odstęp nad ticketami */
 }
 
+    .event-rules {
+    max-width: 900px;               /* ograniczenie szerokości dla lepszej czytelności */
+    margin: 40px auto;              /* odstęp od góry i wyśrodkowanie */
+    font-size: 1.2rem;              /* dopasowane do reszty strony */
+    line-height: 1.5;               /* odstęp między liniami */
+    color: #dbdbdb;                 /* ten sam kolor tekstu co reszta */
+    text-align: left;               /* tekst wyrównany do lewej */
+    font-family: 'Arial', sans-serif; /* spójna czcionka */
+}
+
+.event-rules p {
+    margin-bottom: 15px;            /* odstęp między paragrafami */
+}
+
+.event-rules a {
+    color: #00fff7;                 /* kolor linków pasujący do neonów */
+    text-decoration: underline;     /* podkreślenie linku */
+}
+
 .tickets {
     display: flex;
     justify-content: center;
@@ -330,6 +349,34 @@ button.przycisk:hover {
     <p><strong>Uhrzeit:</strong> 18:00 – 22:00</p>
 </div>
 
+    <div class="event-rules" style="max-width:900px; margin: 40px auto; font-size:1.1rem; line-height:1.5; color:#dbdbdb; text-align:left;">
+  <p><strong>Teilnehmer:</strong><br>
+  Fullsuiter, Partial-Suiter, Cosplayer oder Non-Suiter sind herzlich willkommen. 
+  Vergesst bitte nicht, dass wir nur die Bowlingschuhe tragen dürfen – leider müssen auch Suiter und Cosplayer sich daran halten!</p>
+
+  <p><strong>Erlaubte Requisiten:</strong><br>
+  Props und kleine Stofftiere, die keinen stören (geschätzt bis 40cm, wird aber nicht gemessen – keine Sorge :D) sind erlaubt. 
+  Größere Plushies und Props bitte zu Hause lassen.</p>
+
+  <p><strong>Nicht erlaubt:</strong><br>
+  Kein Fetisch-Gear, keine Puppy Masks oder Harnesses, da wir nicht alleine sein werden und eventuell Kinder im Raum sind. 
+  Halsbänder sind erlaubt.</p>
+
+  <p><strong>Fotos & Videos:</strong><br>
+  Fotos und Videos nur im Bowlingbereich erlaubt, in der Umkleide-Lounge nicht!</p>
+
+  <p><strong>Verhalten:</strong><br>
+  Falls sich jemand unangemessen verhält oder zu stark alkoholisiert ist, wird er/sie vom Event ausgeschlossen, ohne Rückerstattung des Ticketpreises.</p>
+
+  <p><strong>Tickets & Bezahlung:</strong><br>
+  Die Tickets müssen im Voraus bestellt und bezahlt werden, kein Ticketverkauf vor Ort. 
+  Bezahlung per Überweisung oder PayPal möglich. Falls jemand aus der Nähe kommt, gerne auch bar (mit Quittung nach Absprache).</p>
+
+  <p><strong>Speisen & Getränke:</strong><br>
+  Eigenes Essen, Trinken oder Snacks sind nicht erlaubt. Dort kann man an der Theke etwas bestellen. 
+  <a href="https://www.superbowl-nrw.de/images/2024/SB_speisen_getraenke_2024.pdf" target="_blank" style="color:#00fff7; text-decoration:underline;">Speisekarte & Getränkeliste</a></p>
+</div>
+
 <h2 class="section-subtitle">Ticketpreise:</h2>
 
 <div class="tickets">
@@ -459,5 +506,6 @@ function handleSubmit(event) {
 
 </body>
 </html>
+
 
 
