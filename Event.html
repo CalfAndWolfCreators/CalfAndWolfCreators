@@ -317,6 +317,26 @@ button.przycisk:hover {
   border-bottom: 10px solid white;
     text-align: center;
 }
+ @media (max-width: 768px) {
+
+  .tickets {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ticket {
+    width: 90%;
+    max-width: 320px;
+  }
+
+}
+    @media (max-width: 768px) {
+
+  form {
+    padding: 0 15px;
+  }
+
+}
 </style>
 </head>
 <body>
@@ -422,7 +442,8 @@ button.przycisk:hover {
 
     <!-- Pola formularza -->
     <input type="text" name="name" placeholder="Vorname und Name" required>
-    <input type="date" name="birthdate" required>
+    <label style="font-size:1rem;">Geburtsdatum</label>
+<input type="date" name="birthdate" required>
     <input type="text" name="fursuit" placeholder="Fursuit name">
     <input type="email" name="email" placeholder="Email" required>
 
@@ -509,6 +530,7 @@ function handleSubmit(event) {
 
 </body>
 </html>
+
 
 
 
