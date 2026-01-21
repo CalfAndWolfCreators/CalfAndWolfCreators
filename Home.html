@@ -196,13 +196,11 @@
             justify-content: center;
         }
         .gallery-arrow.left {
-  left: 5px;
-}
-
-.gallery-arrow.right {
-  right: 5px;
-}
-        
+            left: 25%;
+        }
+        .gallery-arrow.right {
+            right: 25%;
+        }
         .gallery-caption {
             position: absolute;
             left: 10px;
@@ -236,6 +234,7 @@
   justify-content: center;
   gap: 30px;
   margin-top: 20px;
+  max-width: 1024px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -431,34 +430,28 @@
   }
 }
 
-@media (max-width: 768px) {
-
-  body {
-    overflow-x: hidden;
-  }
+@media (max-width: 600px) {
 
   .gallery-hot-container {
-    width: 100%;
-    max-width: 100vw;
-    padding: 0 12px;
-    display: flex;
-    flex-direction: column;
+    flex-direction: column;        /* jeden pod drugim */
     align-items: center;
     gap: 20px;
-    box-sizing: border-box;
+    max-width: 90vw;               /* CAŁOŚĆ węższa */
   }
 
   .hot-item {
-    width: 90%;
-    max-width: 360px;
-    box-sizing: border-box;
+    width: 85%;                    /* proporcjonalnie węższe */
+    padding: 14px;
   }
 
   .hot-item img {
+    max-height: 220px;             /* mniejsze obrazki */
     width: 100%;
-    height: auto;
-    max-height: 220px;
     object-fit: contain;
+  }
+
+  .hot-caption {
+    font-size: 18px;
   }
 }
     </style>
@@ -736,10 +729,6 @@ window.onpopstate = () => {
 
 </body>
 </html>
-
-
-
-
 
 
 
