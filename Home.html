@@ -232,15 +232,15 @@
  .gallery-hot-container {
   display: flex;
   justify-content: center;
-  gap: 20px; /* mniejszy odstęp, żeby wyglądało proporcjonalnie */
+  gap: 20px; /* odstęp między elementami */
   margin: 30px auto 0 auto;
-  max-width: 1000px;  /* ta sama szerokość co gallery */
-  width: 48%;          /* dopasowanie do galerii Last commission */
-  flex-wrap: wrap;     /* jeśli za mało miejsca, przejdzie do nowego wiersza */
+  max-width: 1000px;  /* dopasowane do galerii Last commission */
+  width: 100%;         /* pełna szerokość kontenera */
+  flex-wrap: wrap;     /* łamanie wiersza przy braku miejsca */
 }
 
 .hot-item {
-  flex: 1 1 calc(32% - 20px); /* 32% szerokości minus gap */
+  flex: 1 1 calc(32% - 20px); /* 3 elementy w rzędzie, minus gap */
   max-width: calc(32% - 20px);
   background: white;
   border-radius: 12px;
@@ -250,15 +250,14 @@
   align-items: center;
   box-sizing: border-box;
 }
-        
+
 .hot-item img {
-  height: auto;      /* stała wysokość dla wszystkich */
-  width: auto;        /* szerokość automatyczna */
-  max-height: 400px;    /* nie przekracza ramki */
-  object-fit: cover;  /* wypełnia ramkę, zachowuje proporcje */
+  height: auto;
+  width: 100%;      /* dopasowanie do szerokości kontenera */
+  max-height: 400px;
+  object-fit: cover;
   border-radius: 8px;
   margin-bottom: 12px;
-  border: none;
   display: block;
 }
 
@@ -725,6 +724,7 @@ window.onpopstate = () => {
 
 </body>
 </html>
+
 
 
 
