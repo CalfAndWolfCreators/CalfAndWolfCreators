@@ -396,12 +396,30 @@
     width: auto;
     max-width: 32vw;
   }
-  .gallery-arrow {
+  ..gallery-arrow {
     width: 40px;
     height: 60px;
     font-size: 2rem;
-    left: 10px;
-    right: 10px;
+  }
+  .gallery-arrow.left {
+    left: 5px;   /* <-- 5px od lewej */
+  }
+  .gallery-arrow.right {
+    right: 5px;  /* <-- 5px od prawej */
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery-arrow {
+    width: 28px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  .gallery-arrow.left {
+    left: 5px;   /* <-- 5px od lewej */
+  }
+  .gallery-arrow.right {
+    right: 5px;  /* <-- 5px od prawej */
   }
 }
 
@@ -724,6 +742,7 @@ window.onpopstate = () => {
 
 </body>
 </html>
+
 
 
 
