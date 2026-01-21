@@ -234,7 +234,6 @@
   justify-content: center;
   gap: 30px;
   margin-top: 20px;
-  max-width: 1024px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -452,6 +451,36 @@
 
   .hot-caption {
     font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .gallery-hot-container {
+    max-width: 100vw !important;
+    width: 100%;
+    padding: 0 10px;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    box-sizing: border-box;
+  }
+
+  .hot-item {
+    width: 90%;
+    max-width: 360px;
+    box-sizing: border-box;
+  }
+
+  .hot-item img {
+    width: 100%;
+    height: auto;
+    max-height: 220px;
+    object-fit: contain;
   }
 }
     </style>
@@ -729,6 +758,7 @@ window.onpopstate = () => {
 
 </body>
 </html>
+
 
 
 
