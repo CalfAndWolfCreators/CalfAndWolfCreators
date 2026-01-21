@@ -235,6 +235,7 @@
   gap: 30px;
   margin-top: 20px;
   max-width: 1024px;
+  padding: 0 10px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -431,27 +432,23 @@
 }
 
 @media (max-width: 600px) {
-
   .gallery-hot-container {
-    flex-direction: column;        /* jeden pod drugim */
+    flex-direction: column;
     align-items: center;
     gap: 20px;
-    max-width: 90vw;               /* CAŁOŚĆ węższa */
+    max-width: 100%;
+    padding: 0 10px;
   }
 
   .hot-item {
-    width: 85%;                    /* proporcjonalnie węższe */
-    padding: 14px;
+    width: 100%;
+    max-width: 360px;      /* ⬅ wygląda estetycznie */
   }
 
   .hot-item img {
-    max-height: 220px;             /* mniejsze obrazki */
     width: 100%;
+    max-height: 220px;
     object-fit: contain;
-  }
-
-  .hot-caption {
-    font-size: 18px;
   }
 }
     </style>
@@ -729,6 +726,7 @@ window.onpopstate = () => {
 
 </body>
 </html>
+
 
 
 
