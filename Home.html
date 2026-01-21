@@ -240,35 +240,37 @@
 }
 
 .hot-item {
-  flex: 1 1 calc(32% - 20px); /* 3 elementy w rzędzie, minus gap */
-  max-width: calc(32% - 20px);
-  background: white;
-  border-radius: 12px;
-  padding: 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
+    flex: 1 1 calc(32% - 20px);
+    max-width: calc(32% - 20px);
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* dla napisu na dole */
+    height: 420px; /* stała wysokość całego bloku */
+    box-sizing: border-box;
+    position: relative;
 }
 
 .hot-item img {
-  height: auto;
-  width: 100%;      /* dopasowanie do szerokości kontenera */
-  max-height: 400px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  display: block;
+    max-height: 80%; /* obrazek zajmuje 80% wysokości bloku */
+    width: auto;
+    object-fit: contain;
+    margin-bottom: auto; /* wypycha caption na dół */
 }
 
- .hot-caption {
-  font-weight: bold;
-  font-size: 22px;
-  color: #103A0D;
-  text-align: center;
-  background: none;
-  margin-top: auto;   /* przykleja napis do dołu boxa */
-  padding-top: 8px;
+.hot-caption {
+    font-weight: bold;
+    font-size: 22px;
+    color: #103A0D;
+    text-align: center;
+    width: 100%;
+    background: rgba(255,255,255,0.9); /* białe tło pod napisem */
+    padding: 10px 0;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
 }
 .footer {
   background-color: #103A0D; /* ciemne tło, pasujące do strony */
@@ -415,12 +417,15 @@
     height: 40px;
     font-size: 1.2rem;
   }
-  .gallery-arrow.left {
-    left: 5px;   /* <-- 5px od lewej */
-  }
-  .gallery-arrow.right {
-    right: 5px;  /* <-- 5px od prawej */
-  }
+  @media (max-width: 900px) {
+  .gallery-arrow.left { left: 5px; }
+  .gallery-arrow.right { right: 5px; }
+}
+
+@media (max-width: 600px) {
+  .gallery-arrow.left { left: 5px; }
+  .gallery-arrow.right { right: 5px; }
+}
 }
 
 @media (max-width: 600px) {
@@ -742,6 +747,7 @@ window.onpopstate = () => {
 
 </body>
 </html>
+
 
 
 
