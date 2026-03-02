@@ -142,28 +142,19 @@
             height: 650px;
             margin: 30px auto 0 auto;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
-        .gallery-slide {
+        .gallery-track {
             display: flex;
             align-items: center;
-            justify-content: center;
             height: 100%;
-            width: 100%;
-            position: relative;
             gap: 15px;
-        }
-        .gallery-slide.fade{
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            animation: scroll 120s linear infinite;
         }
         .gallery-image {
             position: relative;
             height: 650px;
             width: auto;
-            min-width: 32vw;
+            /* remove min-width to let images size naturally */
             display: flex;
             align-items: flex-end;
             justify-content: flex-start;
@@ -180,30 +171,13 @@
             object-fit: contain;
             display: block;
         }
-        .gallery-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 3;
-            width: 60px;
-            height: 120px;
-            border-radius: 16px;
-            background: rgba(42, 107, 45, 0.9);
-            border: none;
-            color: #dbdbdb;
-            font-size: 3rem;
-            cursor: pointer;
-            transition: color 0.2s, background 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
-        .gallery-arrow.left {
-            left: 25%;
-        }
-        .gallery-arrow.right {
-            right: 25%;
-        }
+        /* hide old arrow classes just in case */
+        .gallery-arrow { display: none; }
+        .gallery-arrow.left, .gallery-arrow.right { display: none; }
         .gallery-caption {
             position: absolute;
             left: 10px;
@@ -390,7 +364,7 @@
     height: 350px;
     max-width: 100vw;
   }
-  .gallery-slide {
+  .gallery-track {
     gap: 8px;
   }
   .gallery-image,
@@ -401,39 +375,20 @@
     width: auto;
     max-width: 32vw;
   }
-  .gallery-arrow {
-    width: 40px;
-    height: 60px;
-    font-size: 2rem;
-  }
-  .gallery-arrow.left {
-    left: 5px;   /* <-- 5px od lewej */
-  }
-  .gallery-arrow.right {
-    right: 5px;  /* <-- 5px od prawej */
-  }
 }
 
+
 @media (max-width: 600px) {
-  .gallery-arrow {
-    width: 28px;
-    height: 40px;
-    font-size: 1.2rem;
-  }
-  .gallery-arrow.left {
-    left: 5px;   /* <-- 5px od lewej */
-  }
-  .gallery-arrow.right {
-    right: 5px;  /* <-- 5px od prawej */
-  }
+  /* no arrows */
 }
+
 
 @media (max-width: 600px) {
   .gallery-container {
     height: 160px;
     max-width: 100vw;
   }
-  .gallery-slide {
+  .gallery-track {
     gap: 4px;
   }
   .gallery-image,
@@ -441,13 +396,6 @@
     height: 160px;
     width: auto;
     max-width: 32vw;
-  }
-  .gallery-arrow {
-    width: 28px;
-    height: 40px;
-    font-size: 1.2rem;
-    left: 2px;
-    right: 2px;
   }
 }
 
@@ -506,15 +454,11 @@
     </div>
     <h1 class="commission-title">Last commission done:</h1>
 
-<!-- Galeria commission -->
+<!-- Galeria commission (auto scrolling) -->
 <div class="gallery-container">
-    <button class="gallery-arrow left" onclick="prevSlide()">&#8592;</button>
-    <div class="gallery-viewport">
-        <div class="gallery-slide" id="gallery-track">
-            <!-- Obrazki będą tu dodane przez JS -->
-        </div>
+    <div class="gallery-track" id="gallery-track">
+        <!-- Obrazki będą tu dodane przez JS -->
     </div>
-    <button class="gallery-arrow right" onclick="nextSlide()">&#8594;</button>
 </div>
 
 <h1 class="commission-title" style="margin-top: 75px; text-align: center;">
@@ -600,58 +544,34 @@ const galleryImages = [
     { src: "big-gehrard.jpg", title: "Big Plushie", price: "50€" },
     { src: "mini-borys-plush.jpg", title: "Mini Borys Plush", price: "20€" }
 ];
-let currentSlide = 0;
 
-function showSlide(index) {
-    const slide = document.querySelector('.gallery-slide');
-    if (!slide) return;
+// generate track items and duplicate for seamless loop
+function populateGallery() {
+    const track = document.getElementById('gallery-track');
+    if (!track) return;
 
-    // Poczekaj chwilę, zanim podmienisz zawartość
-    setTimeout(() => {
-        const total = galleryImages.length;
-        const prev = (index - 1 + total) % total;
-        const next = (index + 1) % total;
-
-        slide.innerHTML = `
-            <div class="gallery-image side">
-                <img src="${galleryImages[prev].src}" alt="${galleryImages[prev].title}">
+    function addItems() {
+        galleryImages.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'gallery-image';
+            div.innerHTML = `
+                <img src="${item.src}" alt="${item.title}">
                 <div class="gallery-caption">
-                    <span>${galleryImages[prev].title}</span><br>
-                    <span>${galleryImages[prev].price}</span>
+                    <span>${item.title}</span><br>
+                    <span>${item.price}</span>
                 </div>
-            </div>
-            <div class="gallery-image">
-                <img src="${galleryImages[index].src}" alt="${galleryImages[index].title}">
-                <div class="gallery-caption">
-                    <span>${galleryImages[index].title}</span><br>
-                    <span>${galleryImages[index].price}</span>
-                </div>
-            </div>
-            <div class="gallery-image side">
-                <img src="${galleryImages[next].src}" alt="${galleryImages[next].title}">
-                <div class="gallery-caption">
-                    <span>${galleryImages[next].title}</span><br>
-                    <span>${galleryImages[next].price}</span>
-                </div>
-            </div>
-        `;
+            `;
+            track.appendChild(div);
+        });
+    }
 
-        // Po chwili przywróć opacity
-        slide.classList.remove("fade");
-    }, 150);
+    addItems();
+    addItems(); // duplicate for continuous scrolling
 }
-function prevSlide() {
-    currentSlide = (currentSlide - 1 + galleryImages.length) % galleryImages.length;
-    showSlide(currentSlide);
-}
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % galleryImages.length;
-    showSlide(currentSlide);
-}
-// Inicjalizacja galerii po załadowaniu strony
+
 document.addEventListener("DOMContentLoaded", function() {
-    showSlide(currentSlide);
-} )
+    populateGallery();
+});
 
 // Stopka strony
 </script>
