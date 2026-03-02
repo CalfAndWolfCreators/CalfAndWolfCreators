@@ -171,9 +171,12 @@
             flex-shrink: 0;
         }
         .gallery-image img {
-            height: 100%;
+            /* ograniczamy obrazek do dostępnego miejsca w kontenerze
+               zachowując oryginalne proporcje */
+            max-width: 100%;    /* nie szerszy niż rodzic */
+            max-height: 100%;   /* nie wyższy niż rodzic */
             width: auto;
-            max-width: 100%;
+            height: auto;
             object-fit: contain;
             display: block;
         }
@@ -392,6 +395,8 @@
   }
   .gallery-image,
   .gallery-image img {
+    /* kontener nadal ma stałą wysokość, a same obrazki
+       dostosowują się do niej dzięki max-height/width */
     height: 350px;
     width: auto;
     max-width: 32vw;
