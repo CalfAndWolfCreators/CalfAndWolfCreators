@@ -58,6 +58,17 @@ body {
 }
 @keyframes neon-gradient {0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
+.rainbow-checkmark {
+    background: linear-gradient(270deg, #00fff7, #ff00ea, #ffe600, #00ff2a, #00fff7);
+    background-size: 400% 400%;
+    animation: neon-gradient 6s ease-in-out infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
 .next-event {
     text-align: center;
     font-size: 2rem;
@@ -330,19 +341,19 @@ button.przycisk:hover {
 
 <h2 style="text-align: center; text-decoration: underline; color: #dbdbdb; font-size: 2rem;">Teilnehmerliste</h2>
 
-<table style="border-collapse: collapse; color: #dbdbdb; font-size: 2rem; margin: 0 auto;">
-<tr><th style="border: 1px solid white; padding: 8px;">#</th><th style="border: 1px solid white; padding: 8px;">Name</th><th style="border: 1px solid white; padding: 8px;">Ticket</th><th style="border: 1px solid white; padding: 8px;">Badge Photo</th></tr>
-<tr><td style="border: 1px solid white; padding: 8px;">#1</td><td style="border: 1px solid white; padding: 8px;">Borys</td><td style="border: 1px solid white; padding: 8px; color: blue;">Supersponsor</td><td style="border: 1px solid white; padding: 8px;">✓</td></tr>
-<tr><td style="border: 1px solid white; padding: 8px;">#3</td><td style="border: 1px solid white; padding: 8px;">Soja(Soße)</td><td style="border: 1px solid white; padding: 8px; color: blue;">Supersponsor</td><td style="border: 1px solid white; padding: 8px;">✓</td></tr>
-<tr><td style="border: 1px solid white; padding: 8px;">#4</td><td style="border: 1px solid white; padding: 8px;">Baodor</td><td style="border: 1px solid white; padding: 8px; color: yellow;">Sponsor</td><td style="border: 1px solid white; padding: 8px;">✓</td></tr>
-<tr><td style="border: 1px solid white; padding: 8px;">#5</td><td style="border: 1px solid white; padding: 8px;">Nate Crimson</td><td style="border: 1px solid white; padding: 8px; color: yellow;">Sponsor</td><td style="border: 1px solid white; padding: 8px;">✓</td></tr>
-<tr><td style="border: 1px solid white; padding: 8px;">#6</td><td style="border: 1px solid white; padding: 8px;">Plex The Tiger</td><td style="border: 1px solid white; padding: 8px; color: blue;">Supersponsor</td><td style="border: 1px solid white; padding: 8px;">✓✓</td></tr>
-<tr><td style="border: 1px solid white; padding: 8px;">#8</td><td style="border: 1px solid white; padding: 8px;">Arascane</td><td style="border: 1px solid white; padding: 8px; color: blue;">Supersponsor</td><td style="border: 1px solid white; padding: 8px;">✓</td></tr>
-<tr><td style="border: 1px solid white; padding: 8px;">#9</td><td style="border: 1px solid white; padding: 8px;">Isaak</td><td style="border: 1px solid white; padding: 8px; color: blue;">Supersponsor</td><td style="border: 1px solid white; padding: 8px;">✓</td></tr>
-<tr><td style="border: 1px solid white; padding: 8px;">#10</td><td style="border: 1px solid white; padding: 8px;">Hiroshi</td><td style="border: 1px solid white; padding: 8px; color: yellow;">Sponsor</td><td style="border: 1px solid white; padding: 8px;"></td></tr>
-<tr><td style="border: 1px solid white; padding: 8px;">#11</td><td style="border: 1px solid white; padding: 8px;">Orisa</td><td style="border: 1px solid white; padding: 8px; color: yellow;">Sponsor</td><td style="border: 1px solid white; padding: 8px;"></td></tr>
-<tr><td style="border: 1px solid white; padding: 8px;">#12</td><td style="border: 1px solid white; padding: 8px;">L0tos</td><td style="border: 1px solid white; padding: 8px; color: yellow;">Sponsor</td><td style="border: 1px solid white; padding: 8px;"></td></tr>
-<tr><td style="border: 1px solid white; padding: 8px;">#13</td><td style="border: 1px solid white; padding: 8px;">Akaya</td><td style="border: 1px solid white; padding: 8px; color: yellow;">Sponsor</td><td style="border: 1px solid white; padding: 8px;"></td></tr>
+<table style="border-collapse: collapse; color: #dbdbdb; font-size: 2rem; margin: 0 auto; font-weight: normal;">
+<tr><th style="border: 1px solid white; padding: 8px; font-weight: normal;">#</th><th style="border: 1px solid white; padding: 8px; font-weight: normal;">Name</th><th style="border: 1px solid white; padding: 8px; font-weight: normal;">Fursuiter?</th><th style="border: 1px solid white; padding: 8px; font-weight: normal;">Ticket</th><th style="border: 1px solid white; padding: 8px; font-weight: normal;">Badge Photo</th></tr>
+<tr><td style="border: 1px solid white; padding: 8px;">#1</td><td style="border: 1px solid white; padding: 8px;">Borys</td><td style="border: 1px solid white; padding: 8px; text-align: center;"><span class="rainbow-checkmark">✓</span></td><td style="border: 1px solid white; padding: 8px; color: #00fff7;">Supersponsor</td><td style="border: 1px solid white; padding: 8px;">✓</td></tr>
+<tr><td style="border: 1px solid white; padding: 8px;">#3</td><td style="border: 1px solid white; padding: 8px;">Soja(Soße)</td><td style="border: 1px solid white; padding: 8px; text-align: center;"><span class="rainbow-checkmark">✓</span></td><td style="border: 1px solid white; padding: 8px; color: #00fff7;">Supersponsor</td><td style="border: 1px solid white; padding: 8px;">✓</td></tr>
+<tr><td style="border: 1px solid white; padding: 8px;">#4</td><td style="border: 1px solid white; padding: 8px;">Baodor</td><td style="border: 1px solid white; padding: 8px; text-align: center;"></td><td style="border: 1px solid white; padding: 8px; color: yellow;">Sponsor</td><td style="border: 1px solid white; padding: 8px;">✓</td></tr>
+<tr><td style="border: 1px solid white; padding: 8px;">#5</td><td style="border: 1px solid white; padding: 8px;">Nate Crimson</td><td style="border: 1px solid white; padding: 8px; text-align: center;"><span class="rainbow-checkmark">✓</span></td><td style="border: 1px solid white; padding: 8px; color: yellow;">Sponsor</td><td style="border: 1px solid white; padding: 8px;">✓</td></tr>
+<tr><td style="border: 1px solid white; padding: 8px;">#6</td><td style="border: 1px solid white; padding: 8px;">Plex The Tiger</td><td style="border: 1px solid white; padding: 8px; text-align: center;"></td><td style="border: 1px solid white; padding: 8px; color: #00fff7;">Supersponsor</td><td style="border: 1px solid white; padding: 8px;">✓✓</td></tr>
+<tr><td style="border: 1px solid white; padding: 8px;">#8</td><td style="border: 1px solid white; padding: 8px;">Arascane</td><td style="border: 1px solid white; padding: 8px; text-align: center;"><span class="rainbow-checkmark">✓</span></td><td style="border: 1px solid white; padding: 8px; color: #00fff7;">Supersponsor</td><td style="border: 1px solid white; padding: 8px;">✓</td></tr>
+<tr><td style="border: 1px solid white; padding: 8px;">#9</td><td style="border: 1px solid white; padding: 8px;">Isaak</td><td style="border: 1px solid white; padding: 8px; text-align: center;"></td><td style="border: 1px solid white; padding: 8px; color: #00fff7;">Supersponsor</td><td style="border: 1px solid white; padding: 8px;">✓</td></tr>
+<tr><td style="border: 1px solid white; padding: 8px;">#10</td><td style="border: 1px solid white; padding: 8px;">Hiroshi</td><td style="border: 1px solid white; padding: 8px; text-align: center;"><span class="rainbow-checkmark">✓</span></td><td style="border: 1px solid white; padding: 8px; color: yellow;">Sponsor</td><td style="border: 1px solid white; padding: 8px;">✓</td></tr>
+<tr><td style="border: 1px solid white; padding: 8px;">#11</td><td style="border: 1px solid white; padding: 8px;">Orisa</td><td style="border: 1px solid white; padding: 8px; text-align: center;"><span class="rainbow-checkmark">✓</span></td><td style="border: 1px solid white; padding: 8px; color: yellow;">Sponsor</td><td style="border: 1px solid white; padding: 8px;"></td></tr>
+<tr><td style="border: 1px solid white; padding: 8px;">#12</td><td style="border: 1px solid white; padding: 8px;">L0tos</td><td style="border: 1px solid white; padding: 8px; text-align: center;"><span class="rainbow-checkmark">✓</span></td><td style="border: 1px solid white; padding: 8px; color: yellow;">Sponsor</td><td style="border: 1px solid white; padding: 8px;"></td></tr>
+<tr><td style="border: 1px solid white; padding: 8px;">#13</td><td style="border: 1px solid white; padding: 8px;">Akaya</td><td style="border: 1px solid white; padding: 8px; text-align: center;"><span class="rainbow-checkmark">✓</span></td><td style="border: 1px solid white; padding: 8px; color: yellow;">Sponsor</td><td style="border: 1px solid white; padding: 8px;"></td></tr>
 </table>
 
 
