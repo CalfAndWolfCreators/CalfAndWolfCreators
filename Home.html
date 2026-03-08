@@ -149,7 +149,7 @@
             height: 100%;
             gap: 15px;
             /* move entire duplicated track before restarting */
-            animation: scroll 10s linear infinite;
+            animation: scroll 15s linear infinite;
         }
         .gallery-image {
             position: relative;
@@ -175,7 +175,7 @@
         @keyframes scroll {
             0% { transform: translateX(0); }
             /* travel the full width (both copies) for a continuous loop */
-            100% { transform: translateX(-100%); }
+            100% { transform: translateX(-200%); }
         }
         /* hide old arrow classes just in case */
         .gallery-arrow { display: none; }
@@ -513,40 +513,6 @@ const galleryImages = [
   { src: "maxi-paws.jpg", title: "Paws", price: "170€" },
   { src: "paws-com.jpg", title: "Paws", price: "110€" },
   { src: "partial-com.jpg", title: "Partial", price: "430€" },
-  { src: "bailord.jpg", title: "Feet Paws", price: "202€" },
-  { src: "eivel-partial.jpg", title: "Partial", price: "925€" },
-  { src: "baal.jpg", title: "Scraf with Name", price: "45€" },
-  { src: "grae.jpg", title: "Cosplay Head", price: "710€" },
-  { src: "rokko.jpg", title: "Partial", price: "858€" },
-  { src: "carrots.jpg", title: "Small Plushie", price: "15€" },
-  { src: "hooves-brown.jpg", title: "Feet Hooves", price: "120€" },
-  { src: "buttons-com.jpg", title: "Buttons", price: "10€" },
-  { src: "bird-plush.jpg", title: "Small Plushie", price: "20€" },
-  { src: "fox.jpg", title: "T-Shirt", price: "25€" },
-  { src: "borys-plush-com.jpg", title: "Small Plushie", price: "30€" },
-  { src: "big-meat-leg.jpg", title: "Medium Plushie", price: "45€" },
-  { src: "alien-plush.jpg", title: "Small Plushie", price: "20€" },
-  { src: "borys-full.jpg", title: "Fullsuit", price: "2200€" },
-  { src: "paw-comm6.jpg", title: "Paws", price: "100€" },
-   { src: "stars.jpg", title: "Small Plushie", price: "10€" },
-    { src: "paw-com5.jpg", title: "Paws", price: "100€" },
-    { src: "head-base.jpg", title: "Foam Head Base", price: "150€" },
-    { src: "big-steak.jpg", title: "Big Plushie / Pillow", price: "40€" },
-    { src: "fox-tail.jpg", title: "Tail", price: "60€" },
-    { src: "small-tail.jpg", title: "Tail", price: "35€" },
-    { src: "crock-plush.jpg", title: "Small Plushie", price: "20€" },
-    { src: "paw-com4.jpg", title: "Paws", price: "90€" },
-    { src: "eggs.jpg", title: "Small Plushie Egg", price: "5€" },
-    { src: "doggy-plush.jpg", title: "Big (100cm) Plushie", price: "150€" },
-    { src: "hooves-com.jpg", title: "Hand Hooves", price: "90€" },
-    { src: "kipo-wings.jpg", title: "Hand Wings", price: "220€" },
-    { src: "paws-com3.jpg", title: "Paws", price: "100€" },
-    { src: "paw-com2.jpg", title: "Paws", price: "100€" },
-    { src: "tuch.jpg", title: "Scraf", price: "25€" },
-    { src: "pierogis.jpg", title: "Small Plushies", price: "15€" },
-    { src: "cola-bear-plush.jpg", title: "Small Plushie", price: "35€" },
-    { src: "big-gehrard.jpg", title: "Big Plushie", price: "50€" },
-    { src: "mini-borys-plush.jpg", title: "Mini Borys Plush", price: "20€" }
 ];
 
 // generate track items and duplicate for seamless loop
@@ -571,6 +537,7 @@ function populateGallery() {
 
     addItems();
     addItems(); // duplicate for continuous scrolling
+    addItems(); // third set for seamless loop
 }
 
 document.addEventListener("DOMContentLoaded", function() {
