@@ -148,6 +148,7 @@
             align-items: center;
             height: 100%;
             gap: 15px;
+            /* move entire duplicated track before restarting */
             animation: scroll 10s linear infinite;
         }
         .gallery-image {
@@ -173,7 +174,8 @@
         }
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            /* travel the full width (both copies) for a continuous loop */
+            100% { transform: translateX(-100%); }
         }
         /* hide old arrow classes just in case */
         .gallery-arrow { display: none; }
