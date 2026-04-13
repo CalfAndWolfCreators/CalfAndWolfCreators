@@ -467,8 +467,9 @@ button.przycisk:hover {
 
 .form-label {
   font-size: 1rem;
-  margin-bottom: -14px; /* brak odstępu, blisko inputa */
+  margin-bottom: 8px; /* odpowiedni odstęp powyżej inputa */
   display: block;
+  color: #dbdbdb;
 }
 
 @media (max-width: 768px) {
@@ -665,8 +666,8 @@ button.przycisk:hover {
     </select>
 
     <div id="supersponsor-backname-section" style="display:none;">
-        <label class="form-label">Personalisiere dein T-Shirt mit einem Namen auf dem Rücken!</label>
-        <input type="text" name="supersponsor_shirt_backname" maxlength="12" placeholder="Personalisiere dein T-Shirt mit einem Namen auf dem Rücken!(Max. 12 Zeichen)" pattern="^[a-zA-Z0-9_ ]*$" title="Nur Buchstaben, Zahlen, Unterstriche und Leerzeichen erlaubt">
+        <label class="form-label">Name auf dem Rücken (Max. 12 Zeichen)</label>
+        <input type="text" name="supersponsor_shirt_backname" maxlength="12" placeholder="z.B. BORYS" pattern="^[a-zA-Z0-9_ ]*$" title="Nur Buchstaben, Zahlen, Unterstriche und Leerzeichen erlaubt">
     </div>
 
     <label class="form-label">Möchtest du ein T-shirt für 999 € dazu? *
@@ -706,7 +707,8 @@ button.przycisk:hover {
     </div>
 
     <div id="shirt-backname-section" style="display:none;">
-        <input type="text" name="shirt_backname" maxlength="12" placeholder="Für 999 € extra: Personalisiere dein T-Shirt mit einem Namen auf dem Rücken!(Max. 12 Zeichen)" pattern="^[a-zA-Z0-9_ ]*$" title="Nur Buchstaben, Zahlen, Unterstriche und Leerzeichen erlaubt">
+        <label class="form-label">Name auf dem Rücken (Max. 12 Zeichen)</label>
+        <input type="text" name="shirt_backname" maxlength="12" placeholder="z.B. BORYS" pattern="^[a-zA-Z0-9_ ]*$" title="Nur Buchstaben, Zahlen, Unterstriche und Leerzeichen erlaubt">
     </div>
 
     <label class="checkbox">
@@ -753,7 +755,7 @@ function handleTicketSelection() {
     const supersponsorSection = document.getElementById('supersponsor-backname-section');
     const supersponsorInput = document.querySelector('input[name="supersponsor_shirt_backname"]');
 
-    if (ticket === 'Super Sponsor Ticket') {
+    if (ticket === 'Supersponsor Ticket') {
         supersponsorSection.style.display = 'block';
         if (supersponsorInput) supersponsorInput.required = true;
     } else {
