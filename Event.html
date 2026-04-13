@@ -657,12 +657,17 @@ button.przycisk:hover {
     <input type="text" name="fursuit" placeholder="Fursuit name" required>
     <input type="email" name="email" placeholder="Email" required>
 
-    <select name="ticket" required>
+    <select id="ticketSelect" name="ticket" required>
         <option value="">Wahle Ticket aus</option>
-        <option>Standard Ticket</option>
-        <option>Sponsor Ticket</option>
-        <option>Super Sponsor Ticket</option>
+        <option value="Standard Ticket">Standard Ticket</option>
+        <option value="Sponsor Ticket">Sponsor Ticket</option>
+        <option value="Super Sponsor Ticket">Super Sponsor Ticket</option>
     </select>
+
+    <div id="supersponsor-backname-section" style="display:none;">
+        <label class="form-label">Personalisiere dein T-Shirt mit einem Namen auf dem Rücken!</label>
+        <input type="text" name="supersponsor_shirt_backname" maxlength="12" placeholder="Personalisiere dein T-Shirt mit einem Namen auf dem Rücken!(Max. 12 Zeichen)" pattern="^[a-zA-Z0-9_ ]*$" title="Nur Buchstaben, Zahlen, Unterstriche und Leerzeichen erlaubt">
+    </div>
 
     <label class="form-label">Möchtest du T-shirt für 999 € dazu? *
         <span class="size-info" tabindex="0">i
@@ -742,6 +747,24 @@ function handleSubmit(event) {
     }).catch(err => alert('Etwas schief gelaufen... Versuche später nochmal!'));
 }
 
+function handleTicketSelection() {
+    const ticketSelect = document.getElementById('ticketSelect');
+    const ticket = ticketSelect ? ticketSelect.value : '';
+    const supersponsorSection = document.getElementById('supersponsor-backname-section');
+    const supersponsorInput = document.querySelector('input[name="supersponsor_shirt_backname"]');
+
+    if (ticket === 'Super Sponsor Ticket') {
+        supersponsorSection.style.display = 'block';
+        if (supersponsorInput) supersponsorInput.required = true;
+    } else {
+        supersponsorSection.style.display = 'none';
+        if (supersponsorInput) {
+            supersponsorInput.required = false;
+            supersponsorInput.value = '';
+        }
+    }
+}
+
 function handleShirtSelection() {
     const shirtSelect = document.getElementById('shirtSize');
     const size = shirtSelect ? shirtSelect.value : '';
@@ -764,7 +787,14 @@ function handleShirtSelection() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const ticketSelect = document.getElementById('ticketSelect');
     const shirtSelect = document.getElementById('shirtSize');
+    
+    if (ticketSelect) {
+        ticketSelect.addEventListener('change', handleTicketSelection);
+        handleTicketSelection();
+    }
+    
     if (shirtSelect) {
         shirtSelect.addEventListener('change', handleShirtSelection);
         handleShirtSelection();
