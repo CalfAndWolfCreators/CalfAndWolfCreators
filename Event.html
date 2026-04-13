@@ -796,7 +796,12 @@ function handleTicketSelection() {
         supersponsorSection.style.display = 'block';
         if (supersponsorSizeSelect) supersponsorSizeSelect.required = true;
         if (supersponsorBacknameInput) supersponsorBacknameInput.required = true;
-        // Color will be handled by handleSupersponsorShirtSelection
+        // Show color section immediately for supersponsor
+        const colorSection = document.getElementById('supersponsor-shirt-color-section');
+        if (colorSection) colorSection.style.display = 'block';
+        if (supersponsorColorInputs) {
+            supersponsorColorInputs.forEach(input => input.required = true);
+        }
     } else {
         supersponsorSection.style.display = 'none';
         if (supersponsorSizeSelect) {
@@ -820,20 +825,37 @@ function handleTicketSelection() {
 }
 
 function handleSupersponsorShirtSelection() {
-    const shirtSelect = document.querySelector('select[name="supersponsor_shirt_size"]');
-    const size = shirtSelect ? shirtSelect.value : '';
+    // For supersponsor, color is always shown and required
     const colorSection = document.getElementById('supersponsor-shirt-color-section');
     const colorInputs = document.querySelectorAll('input[name="supersponsor_shirt_color"]');
+    if (colorSection) colorSection.style.display = 'block';
+    if (colorInputs) colorInputs.forEach(input => input.required = true);
+}
 
-    if (size) {
+function handleShirtSelection() {
+    const shirtSelect = document.getElementById('shirtSize');
+    const size = shirtSelect ? shirtSelect.value : '';
+    const colorSection = document.getElementById('shirt-color-section');
+    const backnameSection = document.getElementById('shirt-backname-section');
+    const colorInputs = document.querySelectorAll('input[name="shirt_color"]');
+    const backnameInput = document.querySelector('input[name="shirt_backname"]');
+
+    if (size && size !== 'Nein') {
         colorSection.style.display = 'block';
+        backnameSection.style.display = 'block';
         colorInputs.forEach(input => input.required = true);
+        if (backnameInput) backnameInput.required = false; // Optional
     } else {
         colorSection.style.display = 'none';
+        backnameSection.style.display = 'none';
         colorInputs.forEach(input => {
             input.required = false;
             input.checked = false;
         });
+        if (backnameInput) {
+            backnameInput.required = false;
+            backnameInput.value = '';
+        }
     }
 }
 
