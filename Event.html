@@ -217,6 +217,131 @@ button.przycisk:hover {
     background-color: #3a7d44;
 }
 
+.shirt-size-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.shirt-size-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border: 1px solid #57765a;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.05);
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.shirt-size-option:hover {
+    border-color: #b8d1a1;
+    background: rgba(255,255,255,0.08);
+}
+
+.shirt-size-option input {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+}
+
+.shirt-size-label {
+    font-weight: 700;
+}
+
+.size-info {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #fff;
+    background: #4a4a4a;
+    font-size: 0.75rem;
+    position: relative;
+    cursor: default;
+}
+
+.size-tooltip {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 10px);
+    transform: translateX(-50%);
+    display: none;
+    width: 240px;
+    max-width: 280px;
+    padding: 10px;
+    background: #3a3a3a;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    text-align: left;
+    line-height: 1.3;
+    z-index: 20;
+    white-space: normal;
+}
+
+.shirt-color-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.size-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.95) transparent transparent transparent;
+}
+
+.size-info:hover .size-tooltip,
+.size-info:focus .size-tooltip {
+    display: block;
+}
+
+.shirt-color-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border: 1px solid #57765a;
+    border-radius: 10px;
+    cursor: pointer;
+    background: rgba(255,255,255,0.04);
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.shirt-color-option:hover {
+    border-color: #b8d1a1;
+    background: rgba(255,255,255,0.08);
+}
+
+.shirt-color-option input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+}
+
+.color-box {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.4);
+    display: inline-block;
+}
+
+.color-box.navy { background-color: #001f3f; }
+.color-box.sunflower { background-color: #ffda00; }
+.color-box.lime { background-color: #32cd32; }
+
 
 
 
@@ -529,7 +654,7 @@ button.przycisk:hover {
     <input type="text" name="name" placeholder="Vorname und Name" required>
     <label class="form-label">Geburtsdatum</label>
     <input type="date" name="birthdate" required>
-    <input type="text" name="fursuit" placeholder="Fursuit name">
+    <input type="text" name="fursuit" placeholder="Fursuit name" required>
     <input type="email" name="email" placeholder="Email" required>
 
     <select name="ticket" required>
@@ -538,6 +663,46 @@ button.przycisk:hover {
         <option>Sponsor Ticket</option>
         <option>Super Sponsor Ticket</option>
     </select>
+
+    <label class="form-label">Möchtest du T-shirt für 999 € dazu? *
+        <span class="size-info" tabindex="0">i
+            <span class="size-tooltip">Heather Grey: 97% Baumwolle / 3% Polyester, 40 °C waschbar, Trockner geeignet, Bügeln erlaubt<br>S → W: 48,5cm L: 69,5cm<br>M → W: 53,5cm L: 72cm<br>L → W: 56cm L: 74,5cm<br>XL → W: 61cm L: 77cm<br>XXL → W: 66cm L: 78,5cm</span>
+        </span>
+    </label>
+    <select id="shirtSize" name="shirt_size" required>
+        <option value="">Wähle Größe</option>
+        <option value="Nein">Nein</option>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+        <option value="XXL">XXL</option>
+    </select>
+
+    <div id="shirt-color-section" style="display:none;">
+        <label class="form-label">Wähle Farbe</label>
+        <div class="shirt-color-group">
+            <label class="shirt-color-option">
+                <input type="radio" name="shirt_color" value="Navy Blue">
+                <span class="color-box navy"></span>
+                Navy Blue
+            </label>
+            <label class="shirt-color-option">
+                <input type="radio" name="shirt_color" value="Sunflower">
+                <span class="color-box sunflower"></span>
+                Sunflower
+            </label>
+            <label class="shirt-color-option">
+                <input type="radio" name="shirt_color" value="Lime">
+                <span class="color-box lime"></span>
+                Lime
+            </label>
+        </div>
+    </div>
+
+    <div id="shirt-backname-section" style="display:none;">
+        <input type="text" name="shirt_backname" maxlength="12" placeholder="Für 999 € extra: Personalisiere dein T-Shirt mit einem Namen auf dem Rücken!(Max. 12 Zeichen)" pattern="^[a-zA-Z0-9_ ]*$" title="Nur Buchstaben, Zahlen, Unterstriche und Leerzeichen erlaubt">
+    </div>
 
     <label class="checkbox">
         <input type="checkbox" required>
@@ -576,6 +741,35 @@ function handleSubmit(event) {
         document.getElementById('thankyou-message').style.display = 'block';
     }).catch(err => alert('Etwas schief gelaufen... Versuche später nochmal!'));
 }
+
+function handleShirtSelection() {
+    const shirtSelect = document.getElementById('shirtSize');
+    const size = shirtSelect ? shirtSelect.value : '';
+    const colorSection = document.getElementById('shirt-color-section');
+    const backnameSection = document.getElementById('shirt-backname-section');
+    const colorInputs = document.querySelectorAll('input[name="shirt_color"]');
+
+    if (size && size !== 'Nein') {
+        colorSection.style.display = 'block';
+        backnameSection.style.display = 'block';
+        colorInputs.forEach(input => input.required = true);
+    } else {
+        colorSection.style.display = 'none';
+        backnameSection.style.display = 'none';
+        colorInputs.forEach(input => {
+            input.required = false;
+            input.checked = false;
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const shirtSelect = document.getElementById('shirtSize');
+    if (shirtSelect) {
+        shirtSelect.addEventListener('change', handleShirtSelection);
+        handleShirtSelection();
+    }
+});
 </script>
 
 <!-- Stopka -->
