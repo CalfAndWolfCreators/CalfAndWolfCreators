@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1024">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Event Badges | Calf & Wolf creators</title>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <style>
@@ -10,6 +10,8 @@
             background-color: #103A0D;
             color: #dbdbdb;
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
         .menu {
             text-align: center;
@@ -48,7 +50,7 @@
             text-align: center;
         }
         .logo {
-            margin: 10px auto 30px auto;
+            margin: 10px auto 35px auto;
             text-align: center;
         }
         .logo img {
@@ -57,104 +59,57 @@
             height: auto;
             display: inline-block;
         }
-        .footer {
-            background-color: #1a1a1a;
-            padding: 20px;
-            text-align: center;
-            margin-top: 50px;
-        }
-        .footer-title {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #dbdbdb;
-        }
-        .contact-info {
-            margin-bottom: 20px;
-        }
-        .email-icon {
-            width: 24px;
-            height: 24px;
-            vertical-align: middle;
-            margin-right: 10px;
-        }
-        .email-text {
-            font-size: 1.2rem;
-            color: #dbdbdb;
-        }
-        .social-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .social-btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #266b3d;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        .social-btn:hover {
-            background-color: #3a7d44;
-        }
-        .social-btn img {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
-        }
-        .brown-bar {
-            background-color: #8B4513;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            font-size: 0.9rem;
-        }
         .form-container {
-            max-width: 600px;
+            max-width: 640px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: rgba(0,0,0,0.5);
-            border-radius: 10px;
+            padding: 24px;
+            background-color: rgba(0,0,0,0.55);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
         label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: bold;
         }
-        input[type="text"], input[type="date"] {
+        input[type="text"], input[type="date"], input[type="file"] {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 8px;
             background-color: #fff;
             color: #000;
+            font-size: 1rem;
+            box-sizing: border-box;
         }
         button {
-            padding: 10px 20px;
+            padding: 14px 24px;
             background-color: #266b3d;
             color: #fff;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 1rem;
+            transition: background 0.3s;
         }
         button:hover {
             background-color: #3a7d44;
         }
         .badge-preview {
-            width: 8.56cm;
+            width: 100%;
+            max-width: 8.56cm;
             height: 5.4cm;
-            border: 5px solid transparent;
-            border-radius: 5px;
-            background: linear-gradient(white, white) padding-box, linear-gradient(to bottom, green, blue) border-box;
+            border: 5px solid #266b3d;
+            border-radius: 12px;
+            background-color: #fff;
             margin: 20px auto;
             position: relative;
             color: #000;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         .badge-content {
             width: 8.56cm;
@@ -162,7 +117,7 @@
             background-color: #fff;
             position: relative;
             color: #000;
-            display: none; /* ukryty dla generowania */
+            display: none;
         }
         .badge-name {
             position: absolute;
@@ -186,20 +141,180 @@
             width: 4.6cm;
             height: 4.6cm;
             border: 1px solid #000;
-            background-color: #f0f0f0;
+            background-color: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 12px;
             color: #666;
+            overflow: hidden;
+            cursor: grab;
+            touch-action: none;
+        }
+        .badge-image.grabbing {
+            cursor: grabbing;
         }
         .badge-image img {
             max-width: 100%;
             max-height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            transform-origin: center center;
+            transition: transform 0.1s ease-out;
+            -webkit-user-drag: none;
+            user-select: none;
         }
-        .hidden {
-            display: none;
+        .badge-controls {
+            max-width: 660px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+        }
+        .badge-controls label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            color: #dbdbdb;
+            flex: 1 1 auto;
+            min-width: 200px;
+        }
+        .badge-controls input[type="range"] {
+            width: 220px;
+        }
+        .badge-controls button {
+            min-width: 140px;
+        }
+        .footer {
+            background-color: #103A0D;
+            color: #dbdbdb;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            padding: 0;
+            user-select: none;
+        }
+        .footer-title {
+            font-size: 3.2rem;
+            font-weight: 900;
+            font-family: 'Arial', sans-serif;
+            color: #dbdbdb;
+            margin: 0 0 20px;
+            text-decoration: underline;
+            text-underline-offset: 10px;
+            letter-spacing: 1px;
+            padding-top: 40px;
+        }
+        .contact-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            font-size: 20px;
+            color: #dbdbdb;
+        }
+        .email-icon {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+        .email-text {
+            user-select: text;
+        }
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            max-width: 320px;
+            margin: 0 auto 30px;
+            gap: 25px;
+        }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #266b3d;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: background-color 0.3s ease;
+        }
+        .social-btn img {
+            width: 24px;
+            height: 24px;
+            filter: drop-shadow(0 0 1px rgba(0,0,0,0.5));
+        }
+        .social-btn:hover {
+            background-color: #3a7d44;
+        }
+        .social-btn.youtube:hover {
+            background-color: #ff0000;
+        }
+        .social-btn.telegram:hover {
+            background-color: #0088cc;
+        }
+        .social-btn.facebook:hover {
+            background-color: #1877f2;
+        }
+        .brown-bar {
+            background-color: #5c3a1a;
+            padding: 20px 10px;
+            color: #dbdbdb;
+            font-size: 40px;
+            font-weight: 400;
+            font-family: Arial, sans-serif;
+            line-height: 1.2;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            margin-top: 20px;
+            border-top: 10px solid white;
+            border-bottom: 10px solid white;
+            text-align: center;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 900px) {
+            .menu {
+                gap: 10px;
+            }
+            .przycisk {
+                min-width: calc(50% - 16px);
+                font-size: 1rem;
+                height: 48px;
+                line-height: 48px;
+            }
+            .badge-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+        @media (max-width: 600px) {
+            .menu {
+                flex-direction: column;
+                gap: 10px;
+                align-items: stretch;
+                padding: 12px;
+            }
+            .przycisk {
+                width: 100%;
+                min-width: auto;
+            }
+            .badge-preview {
+                max-width: calc(100vw - 40px);
+                height: auto;
+                aspect-ratio: 8.56 / 5.4;
+            }
+            .badge-controls input[type="range"] {
+                width: 100%;
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -207,48 +322,59 @@
 
 <!-- Menu góra -->
 <div class="menu">
-    <a class="przycisk" href="Home.html">Home</a>
-    <a class="przycisk" href="Fursuit.html">Fursuit & Fursuit parts</a>
-    <a class="przycisk" href="Plushies.html">Plushies & Props</a>
-    <a class="przycisk" href="Merch.html">Patches, Merch & more... </a>
-    <a class="przycisk" href="AboutUs.html">About Us</a>
-    <a class="przycisk" href="Contact.html">Commission / Contact / Q&A</a>
-    <a class="przycisk" href="Shop.html">Our Shop</a>
+    <a class="przycisk" href="Home.html">Startseite</a>
+    <a class="przycisk" href="Fursuit.html">Fursuit & Fursuit Teile</a>
+    <a class="przycisk" href="Plushies.html">Plüschtiere & Requisiten</a>
+    <a class="przycisk" href="Merch.html">Patches, Merch & mehr...</a>
+    <a class="przycisk" href="AboutUs.html">Über Uns</a>
+    <a class="przycisk" href="Contact.html">Kontakt / Bestellung / FAQ</a>
+    <a class="przycisk" href="Shop.html">Unser Shop</a>
+</div>
+
+<div class="logo">
+    <img src="logo.png" alt="Calf & Wolf creators Logo">
 </div>
 
 <div id="content">
-    <h1 style="text-align: center; margin-top: 50px;">Event Badge Upload</h1>
+    <h1 style="text-align: center; margin-top: 50px;">Event-Badge Hochladen</h1>
     <div class="form-container">
         <div id="validation-form">
-            <h2>Weryfikacja danych</h2>
+            <h2>Datenverifizierung</h2>
             <div class="form-group">
-                <label for="ticket">Numer biletu (np. #1):</label>
+                <label for="ticket">Ticketnummer (Beispiel: #1):</label>
                 <input type="text" id="ticket" placeholder="#1">
             </div>
             <div class="form-group">
-                <label for="fursuit">Nazwa Fursuitu (np. Borys):</label>
+                <label for="fursuit">Fursuit Name (Beispiel: Borys):</label>
                 <input type="text" id="fursuit" placeholder="Borys">
             </div>
             <div class="form-group">
-                <label for="dob">Data urodzenia (np. 20.04.1999):</label>
-                <input type="text" id="dob" placeholder="20.04.1999">
+                <label for="dob">Geburtsdatum (Beispiel: 11.07.2026):</label>
+                <input type="text" id="dob" placeholder="11.07.2026">
             </div>
-            <button onclick="validateData()">Sprawdź dane</button>
+            <button onclick="validateData()">Bestätigen</button>
         </div>
         <div id="upload-form" class="hidden">
-            <h2>Prześlij obrazek</h2>
+            <h2>Badge-Avatar senden</h2>
             <div class="form-group">
-                <label for="image">Wybierz obrazek:</label>
+                <label for="image">Avatar auswählen:</label>
                 <input type="file" id="image" accept="image/*" onchange="previewImage()">
             </div>
-            <button onclick="submitImage()">Prześlij</button>
+            <button onclick="submitImage()">Senden</button>
         </div>
     </div>
     <div id="preview" class="hidden">
-        <h2 style="text-align: center;">Podgląd identyfikatora</h2>
+        <h2 style="text-align: center;">Badge Vorschau</h2>
         <div class="badge-preview">
             <div class="badge-name" id="badge-name"></div>
-            <div class="badge-image" id="badge-image">Obrazek tutaj</div>
+            <div class="badge-image" id="badge-image">Hier dein Avatar</div>
+        </div>
+        <div class="badge-controls">
+            <label for="zoom-range">Zoom:
+                <input type="range" id="zoom-range" min="1" max="3" step="0.05" value="1" oninput="updateZoom(this.value)">
+            </label>
+            <button type="button" onclick="resetTransform()">Zurücksetzen</button>
+            <span id="zoom-value">100%</span>
         </div>
         <div class="badge-content">
             <div class="badge-name" id="badge-name-content"></div>
@@ -257,15 +383,12 @@
     </div>
 </div>
 
-<!-- Kontakt i Social Media -->
 <footer class="footer">
-    <h2 class="commission-title">Contact & Socialmedia</h2>
-    
+    <h2 class="footer-title">Contact & Socialmedia</h2>
     <div class="contact-info">
         <img src="email-icon.png" alt="Email icon" class="email-icon" />
         <span class="email-text">cw-sales@protonmail.com</span>
     </div>
-    
     <div class="social-buttons">
         <a href="https://www.youtube.com/@CalfAndWolfCreators" target="_blank" class="social-btn youtube">
             <img src="youtube-icon.png" alt="YouTube" /> Youtube
@@ -279,7 +402,6 @@
     </div>
 </footer>
 
-<!-- Brązowy pasek na dole -->
 <div class="brown-bar">
     ©2024 created by Calf & Wolf creators | Fursuit makers from Germany
 </div>
@@ -306,7 +428,7 @@ function validateData() {
         document.getElementById('badge-name').textContent = fursuit;
         document.getElementById('badge-name-content').textContent = fursuit;
     } else {
-        alert('Dane nie zgadzają się. Spróbuj ponownie.');
+        alert('Die Daten stimmen nicht überein. Bitte versuche es erneut.');
     }
 }
 
@@ -317,9 +439,76 @@ function previewImage() {
         reader.onload = function(e) {
             document.getElementById('badge-image').innerHTML = '<img src="' + e.target.result + '" alt="Badge Image">';
             document.getElementById('badge-image-content').innerHTML = '<img src="' + e.target.result + '" alt="Badge Image">';
+            resetTransform();
         };
         reader.readAsDataURL(file);
     }
+}
+
+let zoomScale = 1;
+let offsetX = 0;
+let offsetY = 0;
+let isDragging = false;
+let dragStartX = 0;
+let dragStartY = 0;
+let initialX = 0;
+let initialY = 0;
+
+function setTransform() {
+    const images = document.querySelectorAll('#badge-image img, #badge-image-content img');
+    images.forEach(img => {
+        img.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${zoomScale})`;
+    });
+    document.getElementById('zoom-value').textContent = `${Math.round(zoomScale * 100)}%`;
+}
+
+function updateZoom(value) {
+    zoomScale = parseFloat(value);
+    if (zoomScale < 1) zoomScale = 1;
+    setTransform();
+}
+
+function resetTransform() {
+    zoomScale = 1;
+    offsetX = 0;
+    offsetY = 0;
+    const zoomRange = document.getElementById('zoom-range');
+    if (zoomRange) zoomRange.value = zoomScale;
+    setTransform();
+}
+
+function startPan(event) {
+    const imageContainer = document.getElementById('badge-image');
+    const image = document.querySelector('#badge-image img');
+    if (!image) return;
+    isDragging = true;
+    imageContainer.classList.add('grabbing');
+    dragStartX = event.clientX;
+    dragStartY = event.clientY;
+    initialX = offsetX;
+    initialY = offsetY;
+    imageContainer.setPointerCapture(event.pointerId);
+}
+
+function panImage(event) {
+    if (!isDragging) return;
+    offsetX = initialX + (event.clientX - dragStartX);
+    offsetY = initialY + (event.clientY - dragStartY);
+    setTransform();
+}
+
+function endPan(event) {
+    isDragging = false;
+    document.getElementById('badge-image').classList.remove('grabbing');
+}
+
+const imageContainer = document.getElementById('badge-image');
+if (imageContainer) {
+    imageContainer.addEventListener('pointerdown', startPan);
+    imageContainer.addEventListener('pointermove', panImage);
+    imageContainer.addEventListener('pointerup', endPan);
+    imageContainer.addEventListener('pointercancel', endPan);
+    imageContainer.addEventListener('pointerleave', endPan);
 }
 
 function submitImage() {
@@ -328,7 +517,7 @@ function submitImage() {
         const imgData = canvas.toDataURL('image/png');
         const name = document.getElementById('badge-name-content').textContent;
         const subject = encodeURIComponent('New Event Badge Submission');
-        const body = encodeURIComponent('Nazwa: ' + name + '\n\nObraz identyfikatora:\n<img src="' + imgData + '" alt="Badge">');
+        const body = encodeURIComponent('Name: ' + name + '\n\nBadge-Bild:\n<img src="' + imgData + '" alt="Badge">');
         window.location.href = 'mailto:cw-sales@protonmail.com?subject=' + subject + '&body=' + body;
     });
 }
