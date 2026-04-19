@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024">
+    <title>Event Badges | Calf & Wolf creators</title>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        body {
+            background-color: #103A0D;
+            color: #dbdbdb;
+            font-family: Arial, sans-serif;
+        }
+        .menu {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .przycisk {
+            height: 40px;
+            line-height: 40px;
+            padding: 0 25px;
+            background-color: #266b3d;
+            color: #fff;
+            border: none;
+            border-radius: 0;
+            margin: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: middle;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: background 0.3s;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+        }
+        .przycisk:hover {
+            background-color: #3a7d44;
+        }
+        .przycisk.active {
+            background-color: #dbdbdb;
+            color: #103A0D;
+            font-weight: bold;
+        }
+        a.przycisk {
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+        }
+        .logo {
+            margin: 10px auto 30px auto;
+            text-align: center;
+        }
+        .logo img {
+            max-width: 660px;
+            width: 100%;
+            height: auto;
+            display: inline-block;
+        }
+        .footer {
+            background-color: #1a1a1a;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .footer-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #dbdbdb;
+        }
+        .contact-info {
+            margin-bottom: 20px;
+        }
+        .email-icon {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        .email-text {
+            font-size: 1.2rem;
+            color: #dbdbdb;
+        }
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #266b3d;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .social-btn:hover {
+            background-color: #3a7d44;
+        }
+        .social-btn img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        .brown-bar {
+            background-color: #8B4513;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #000;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #266b3d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #3a7d44;
+        }
+        .badge-preview {
+            width: 8.56cm;
+            height: 5.4cm;
+            border: 5px solid transparent;
+            border-radius: 5px;
+            background: linear-gradient(white, white) padding-box, linear-gradient(to bottom, green, blue) border-box;
+            margin: 20px auto;
+            position: relative;
+            color: #000;
+        }
+        .badge-content {
+            width: 8.56cm;
+            height: 5.4cm;
+            background-color: #fff;
+            position: relative;
+            color: #000;
+            display: none; /* ukryty dla generowania */
+        }
+        .badge-name {
+            position: absolute;
+            top: 0.35cm;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4.6cm;
+            height: 1cm;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .badge-image {
+            position: absolute;
+            top: 1.5cm;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4.6cm;
+            height: 4.6cm;
+            border: 1px solid #000;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #666;
+        }
+        .badge-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Menu góra -->
+<div class="menu">
+    <a class="przycisk" href="Home.html">Home</a>
+    <a class="przycisk" href="Fursuit.html">Fursuit & Fursuit parts</a>
+    <a class="przycisk" href="Plushies.html">Plushies & Props</a>
+    <a class="przycisk" href="Merch.html">Patches, Merch & more... </a>
+    <a class="przycisk" href="AboutUs.html">About Us</a>
+    <a class="przycisk" href="Contact.html">Commission / Contact / Q&A</a>
+    <a class="przycisk" href="Shop.html">Our Shop</a>
+</div>
+
+<div id="content">
+    <h1 style="text-align: center; margin-top: 50px;">Event Badge Upload</h1>
+    <div class="form-container">
+        <div id="validation-form">
+            <h2>Weryfikacja danych</h2>
+            <div class="form-group">
+                <label for="ticket">Numer biletu (np. #1):</label>
+                <input type="text" id="ticket" placeholder="#1">
+            </div>
+            <div class="form-group">
+                <label for="fursuit">Nazwa Fursuitu (np. Borys):</label>
+                <input type="text" id="fursuit" placeholder="Borys">
+            </div>
+            <div class="form-group">
+                <label for="dob">Data urodzenia (np. 20.04.1999):</label>
+                <input type="text" id="dob" placeholder="20.04.1999">
+            </div>
+            <button onclick="validateData()">Sprawdź dane</button>
+        </div>
+        <div id="upload-form" class="hidden">
+            <h2>Prześlij obrazek</h2>
+            <div class="form-group">
+                <label for="image">Wybierz obrazek:</label>
+                <input type="file" id="image" accept="image/*" onchange="previewImage()">
+            </div>
+            <button onclick="submitImage()">Prześlij</button>
+        </div>
+    </div>
+    <div id="preview" class="hidden">
+        <h2 style="text-align: center;">Podgląd identyfikatora</h2>
+        <div class="badge-preview">
+            <div class="badge-name" id="badge-name"></div>
+            <div class="badge-image" id="badge-image">Obrazek tutaj</div>
+        </div>
+        <div class="badge-content">
+            <div class="badge-name" id="badge-name-content"></div>
+            <div class="badge-image" id="badge-image-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Kontakt i Social Media -->
+<footer class="footer">
+    <h2 class="commission-title">Contact & Socialmedia</h2>
+    
+    <div class="contact-info">
+        <img src="email-icon.png" alt="Email icon" class="email-icon" />
+        <span class="email-text">cw-sales@protonmail.com</span>
+    </div>
+    
+    <div class="social-buttons">
+        <a href="https://www.youtube.com/@CalfAndWolfCreators" target="_blank" class="social-btn youtube">
+            <img src="youtube-icon.png" alt="YouTube" /> Youtube
+        </a>
+        <a href="https://t.me/CalfAndWolfCreators" target="_blank" class="social-btn telegram">
+            <img src="telegram-icon.png" alt="Telegram" /> Telegram
+        </a>
+        <a href="https://www.facebook.com/CalfAndWolfCreators/" target="_blank" class="social-btn facebook">
+            <img src="facebook-icon.png" alt="Facebook" /> Facebook
+        </a>
+    </div>
+</footer>
+
+<!-- Brązowy pasek na dole -->
+<div class="brown-bar">
+    ©2024 created by Calf & Wolf creators | Fursuit makers from Germany
+</div>
+
+<script>
+const participants = [
+    { ticket: '#1', fursuit: 'Borys', dob: '20.04.1999' },
+    { ticket: '#2', fursuit: 'Isaak', dob: '14.02.1999' },
+    { ticket: '#3', fursuit: 'Luna', dob: '4.07.2002' },
+    { ticket: '#4', fursuit: 'Hiroshi', dob: '22.05.2002' },
+    { ticket: '#6', fursuit: 'Lemoncurd', dob: '18.08.1982' }
+];
+
+function validateData() {
+    const ticket = document.getElementById('ticket').value;
+    const fursuit = document.getElementById('fursuit').value;
+    const dob = document.getElementById('dob').value;
+    
+    const participant = participants.find(p => p.ticket === ticket && p.fursuit === fursuit && p.dob === dob);
+    if (participant) {
+        document.getElementById('validation-form').classList.add('hidden');
+        document.getElementById('upload-form').classList.remove('hidden');
+        document.getElementById('preview').classList.remove('hidden');
+        document.getElementById('badge-name').textContent = fursuit;
+        document.getElementById('badge-name-content').textContent = fursuit;
+    } else {
+        alert('Dane nie zgadzają się. Spróbuj ponownie.');
+    }
+}
+
+function previewImage() {
+    const file = document.getElementById('image').files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('badge-image').innerHTML = '<img src="' + e.target.result + '" alt="Badge Image">';
+            document.getElementById('badge-image-content').innerHTML = '<img src="' + e.target.result + '" alt="Badge Image">';
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+function submitImage() {
+    const badgeContent = document.querySelector('.badge-content');
+    html2canvas(badgeContent).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const name = document.getElementById('badge-name-content').textContent;
+        const subject = encodeURIComponent('New Event Badge Submission');
+        const body = encodeURIComponent('Nazwa: ' + name + '\n\nObraz identyfikatora:\n<img src="' + imgData + '" alt="Badge">');
+        window.location.href = 'mailto:cw-sales@protonmail.com?subject=' + subject + '&body=' + body;
+    });
+}
+</script>
+
+</body>
+</html>
