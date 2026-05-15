@@ -261,7 +261,7 @@ textarea:invalid {
 </div>
 
 <div class="contact-form-container">
-  <form action="https://api.web3forms.com/submit" method="POST" onsubmit="return validateForm()">
+  <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" onsubmit="return handleContactSubmit(event)">
 
   <!-- Web3Forms Access Key -->
   <input type="hidden" name="access_key" value="03aac9f0-26cf-47d3-9d26-bd743eba106e">
@@ -302,10 +302,32 @@ textarea:invalid {
 
   <button type="submit">Send</button>
 </form>
+
+  <div id="contact-thankyou" style="display:none; text-align:center; margin-top:20px; font-size:1.2rem; color:#dbdbdb;">
+    Thank you for contacting us! We will answer you as soon as we can.
+  </div>
 </div>
 
 <!-- Stopka -->
 <script>
+function handleContactSubmit(event) {
+  event.preventDefault();
+  if (!validateForm()) {
+    return false;
+  }
+
+  const form = event.target;
+  fetch(form.action, {
+    method: form.method,
+    body: new FormData(form)
+  }).then(() => {
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('contact-thankyou').style.display = 'block';
+  }).catch(() => {
+    alert('Coś poszło nie tak. Spróbuj ponownie później.');
+  });
+}
+
 function validateForm() {
   var nickname = document.forms[0].nickname.value.trim();
   var email = document.forms[0].email.value.trim();
