@@ -236,22 +236,6 @@ textarea:invalid {
   text-align: center;
   flex-wrap: wrap;
 }
-  background-color: #5c3a1a; /* brązowy pasek */
-  height: 140px;
-  color: #dbdbdb;
-  font-size: 40px;
-  font-weight: 400;
-  font-style: arial, sans-serif;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  margin-top: 20px; /* opcjonalnie, żeby odseparować od powyższego */
-  border-top: 10px solid white;
-  border-bottom: 10px solid white;
-    text-align: center;
-}
     </style>
     
     
@@ -263,7 +247,7 @@ textarea:invalid {
     <a class="przycisk" href="Home.html">Home</a>
   <a class="przycisk" href="Fursuit.html">Fursuit & Fursuit parts</a>
   <a class="przycisk" href="Plushies.html">Plushies & Props</a>
-  <a class="przycisk" href="Merch.html">Patches, Merch & more...</a>
+  <a class="przycisk" href="Merch.html">Patches, Merch & more... </a>
   <a class="przycisk" href="AboutUs.html">About Us</a>
   <a class="przycisk" href="Contact.html">Commission / Contact / Q&A</a>
   <a class="przycisk" href="Shop.html">Our Shop</a>
@@ -277,10 +261,17 @@ textarea:invalid {
 </div>
 
 <div class="contact-form-container">
-  <form action="https://formsubmit.co/cw-sales@protonmail.com" method="POST" onsubmit="return validateForm()">
-  <input type="hidden" name="_subject" value="Nowe zgłoszenie z formularza Calf & Wolf!">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_template" value="table">
+  <form action="https://api.web3forms.com/submit" method="POST" onsubmit="return validateForm()">
+
+  <!-- Web3Forms Access Key -->
+  <input type="hidden" name="access_key" value="03aac9f0-26cf-47d3-9d26-bd743eba106e">
+
+  <!-- Opcjonalne ustawienia -->
+  <input type="hidden" name="subject" value="Nowe zgłoszenie z formularza Calf & Wolf!">
+  <input type="hidden" name="from_name" value="Calf & Wolf Website">
+
+  <!-- Anti-spam -->
+  <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
   <label>Nickname / Fursuit name <span class="required-star">*</span></label>
   <input type="text" name="nickname" placeholder="Borys" required>
@@ -289,22 +280,22 @@ textarea:invalid {
   <input type="text" name="telegram" placeholder="@BorysTheCalf">
 
   <label>Email <span class="required-star">*</span></label>
-  <input type="email" name="email" id="email" placeholder="cw-sales@protonmai.com" required>
+  <input type="email" name="email" id="email" placeholder="cw-sales@protonmail.com" required>
 
   <label>What do you want to commission? <span class="required-star">*</span></label>
   <select name="type" required>
-  <option value="" disabled selected>-- choose one --</option>
-  <option value="FursuitFullsuit">Fursuit (Fullsuit)</option>
-  <option value="FursuitPartial">Fursuit (Partial)</option>
-  <option value="FursuitOnePart">Fursuit part (only one)</option>
-  <option value="Plush">Plush</option>
-  <option value="Prop">Prop</option>
-  <option value="Patch">Patch/-es</option>
-  <option value="Soap">Soap/-s</option>
-  <option value="Buttons">Button/-s</option>
-  <option value="Merch">Merch</option>
-  <option value="Other">Other (please describe what)</option>
-</select>
+    <option value="" disabled selected>-- choose one --</option>
+    <option value="FursuitFullsuit">Fursuit (Fullsuit)</option>
+    <option value="FursuitPartial">Fursuit (Partial)</option>
+    <option value="FursuitOnePart">Fursuit part (only one)</option>
+    <option value="Plush">Plush</option>
+    <option value="Prop">Prop</option>
+    <option value="Patch">Patch/-es</option>
+    <option value="Soap">Soap/-s</option>
+    <option value="Buttons">Button/-s</option>
+    <option value="Merch">Merch</option>
+    <option value="Other">Other (please describe what)</option>
+  </select>
 
   <label>Any extra suggestions? (optional)</label>
   <textarea name="suggestions" placeholder="Any extra suggestions? 3D printed eyes or black claws"></textarea>
@@ -313,30 +304,36 @@ textarea:invalid {
 </form>
 </div>
 
+<!-- Stopka -->
 <script>
-  function validateForm() {
-    const emailField = document.getElementById("email");
-    const email = emailField.value.trim();
-    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/i;
+function validateForm() {
+  var nickname = document.forms[0].nickname.value.trim();
+  var email = document.forms[0].email.value.trim();
+  var type = document.forms[0].type.value;
 
-    if (!pattern.test(email)) {
-      alert("Please enter a valid email address.");
-      return false;
-    }
-
-    if (email.toLowerCase() === "cw-sales@protonmail.com") {
-      alert("Please use a different email address.");
-      emailField.style.backgroundColor = "rgba(255, 0, 0, 0.15)";
-      emailField.style.border = "2px solid rgba(204, 68, 68, 0.5)";
-      return false;
-    }
-
-    return true;
+  if (!nickname) {
+    alert('Proszę podać Nickname / Fursuit name.');
+    return false;
   }
 
-</script>
+  if (!email) {
+    alert('Proszę podać adres e-mail.');
+    return false;
+  }
 
-<!-- Stopka -->
+  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    alert('Proszę podać poprawny adres e-mail.');
+    return false;
+  }
+
+  if (!type) {
+    alert('Proszę wybrać typ zamówienia.');
+    return false;
+  }
+
+  return true;
+}
 </script>
 <!-- Pasek trawy -->
 <div class="grass-divider">
