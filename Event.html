@@ -535,6 +535,84 @@ button.przycisk:hover {
   }
 }
 
+.participant-section {
+  max-width: 960px;
+  margin: 0 auto 40px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 30px;
+}
+
+.participant-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.participant-table th,
+.participant-table td {
+  border: 1px solid rgba(255,255,255,0.14);
+  padding: 14px 18px;
+  text-align: left;
+}
+
+.participant-table th {
+  background: rgba(255,255,255,0.08);
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+}
+
+.participant-table td {
+  background: rgba(255,255,255,0.04);
+  color: #dbdbdb;
+}
+
+.rainbow-row td {
+  background: transparent;
+  color: transparent;
+  background: linear-gradient(90deg, #00fff7, #ff00ea, #ffe600, #00ff2a, #00fff7);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.gold-row td {
+  color: transparent;
+  background: linear-gradient(90deg, #f8d13d 0%, #f8d13d 45%, #ffffff 50%, #f8d13d 55%, #f8d13d 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: gold-shimmer 2s ease-in-out infinite;
+}
+
+.white-row td {
+  color: #ffffff;
+  background: transparent;
+}
+
+@keyframes gold-shimmer {
+  0%, 70%, 100% {
+    background-position: 0% 50%;
+  }
+  72%, 85% {
+    background-position: 100% 50%;
+  }
+}
+
+.checkmark {
+  color: #00ff88;
+  font-weight: 700;
+}
+
+.crossmark {
+  color: #ff6b6b;
+  font-weight: 700;
+}
+
 /* Mobile responsiveness for footer */
 @media (max-width: 768px) {
   .footer-title {
@@ -631,6 +709,77 @@ button.przycisk:hover {
     </div>
 </div>
 
+<div class="participant-section">
+  <h2 class="section-subtitle">Tailnehmer</h2>
+  <div class="table-wrapper">
+    <table class="participant-table" aria-label="Tailnehmer">
+      <thead>
+        <tr>
+          <th>Fursuitname</th>
+          <th>Ticket</th>
+          <th>Fursuiter</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="rainbow-row">
+          <td>Borys</td>
+          <td>Supersponsor</td>
+          <td><span class="checkmark">✔</span></td>
+        </tr>
+        <tr class="rainbow-row">
+          <td>Isaak</td>
+          <td>Supersponsor</td>
+          <td><span class="crossmark">✘</span></td>
+        </tr>
+        <tr class="gold-row">
+          <td>Lemoncurd</td>
+          <td>Sponsor</td>
+          <td><span class="checkmark">✔</span></td>
+        </tr>
+        <tr class="rainbow-row">
+          <td>Alfredo</td>
+          <td>Supersponsor</td>
+          <td><span class="checkmark">✔</span></td>
+        </tr>
+        <tr>
+          <td>Razer</td>
+          <td>Standard</td>
+          <td><span class="checkmark">✔</span></td>
+        </tr>
+        <tr class="gold-row">
+          <td>Plex The Tiger</td>
+          <td>Sponsor</td>
+          <td><span class="crossmark">✘</span></td>
+        </tr>
+        <tr class="rainbow-row">
+          <td>Lilli</td>
+          <td>Supersponsor</td>
+          <td><span class="checkmark">✔</span></td>
+        </tr>
+        <tr class="rainbow-row">
+          <td>NUKA</td>
+          <td>Supersponsor</td>
+          <td><span class="checkmark">✔</span></td>
+        </tr>
+        <tr class="rainbow-row">
+          <td>Haru</td>
+          <td>Supersponsor</td>
+          <td><span class="checkmark">✔</span></td>
+        </tr>
+        <tr class="white-row">
+          <td>Arkila von Schwarzpfote</td>
+          <td>Standard</td>
+          <td><span class="crossmark">✘</span></td>
+        </tr>
+        <tr class="white-row">
+          <td>Bluebeery</td>
+          <td>Standard</td>
+          <td><span class="crossmark">✘</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
     <div class="event-rules" style="max-width:900px; margin: 40px auto; font-size:1.1rem; line-height:1.5; color:#dbdbdb; text-align:left;">
   <p><strong>Teilnehmer:</strong><br>
