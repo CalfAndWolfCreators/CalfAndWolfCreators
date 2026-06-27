@@ -73,7 +73,33 @@ body {
     text-align: center;
     font-size: 2rem;
     font-weight: 700;
-    margin: 0 auto 50px auto; /* odstęp pod tytułem */
+    margin: 0 auto 20px auto;
+}
+
+.urgent-notice {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #ffe600;
+    margin: 0 auto 30px auto;
+    text-transform: uppercase;
+    animation: blink 1s steps(1, end) infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+}
+
+.time-old {
+    text-decoration: line-through;
+    color: #8a8a8a;
+}
+
+.time-new {
+    margin-top: 6px;
+    font-weight: 600;
 }
 
 .section-subtitle-text.event-info {
@@ -660,16 +686,25 @@ button.przycisk:hover {
 
 <h1 class="neon-text">Events</h1>
 
+<div class="event-list" style="text-align: center; font-size: 2.0rem; font-weight: 700; line-height: 1.2; margin: -8px 0 18px; color: #e8e8e8;">
+    <p style="margin: 2px 0;">Furry Bowling - 24.10.2026</p>
+    <p style="margin: 2px 0;">Fursuitwalk Rheinpromenade - 7.11.2026; 13:00 Uhr</p>
+    <p style="margin: 2px 0;">Furry Dance Dinslaken - 16-17.04.2027</p>
+</div>
+
 <div class="next-event">
     <p><strong>Next event:</strong></p>
     <p class="event-title"><u>Furry Bowling</u></p>
 </div>
 
+<p class="urgent-notice">Kurzfristige Änderung – vielen Dank für euer Verständnis.</p>
+
 <div class="section-subtitle-text event-info"> 
     <p><strong>Wo:</strong> Super Bowl Bowlingpark Dinslaken</p>
     <p><strong>Adresse:</strong> Drei Eichen 2, 46535 Dinslaken</p>
     <p><strong>Datum:</strong> Samstag, den 11.07.2026</p>
-    <p><strong>Uhrzeit:</strong> 17:00 bis 21:00 Uhr</p>
+    <p class="time-old"><strong>Uhrzeit:</strong> 17:00 bis 21:00 Uhr</p>
+    <p class="time-new"><strong>Uhrzeit:</strong> 14:00 bis 18:00 Uhr</p>
 </div>
 
 <!-- Wiadomość o zamknięciu rejestracji -->
