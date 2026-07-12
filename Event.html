@@ -470,21 +470,6 @@ button.przycisk:hover {
   background-color: #1877f2;
 }
 
-.closed-message-gradient {
-  background: linear-gradient(90deg, #FF8C00, #FFD700, #FFFFFF, #FF8C00, #FFD700, #FFFFFF);
-  background-size: 200% 100%;
-  animation: color-wave 6s ease-in-out infinite;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-@keyframes color-wave {
-  0% { background-position: 0% center; }
-  50% { background-position: 100% center; }
-  100% { background-position: 0% center; }
-}
-
 .brown-bar {
   background-color: #5c3a1a; /* brązowy pasek */
   /* zamiast stałej wysokości dajemy padding, aby treść mogła się ładnie dopasować */
@@ -707,11 +692,6 @@ button.przycisk:hover {
     <p class="time-new"><strong>Uhrzeit:</strong> 14:00 bis 18:00 Uhr</p>
 </div>
 
-<!-- Wiadomość o zamknięciu rejestracji -->
-<div class="closed-message-gradient" style="text-align: center; margin: 60px auto 80px; font-size: 2.8rem; font-weight: bold; text-decoration: underline; text-underline-offset: 10px; letter-spacing: 2px;">
-  Zu spät! Die Anmeldung ist bereits vorbei :(
-</div>
-
 <h2 class="section-subtitle">Ticketpreise:</h2>
 
 <div class="tickets">
@@ -851,6 +831,245 @@ button.przycisk:hover {
   Eigenes Essen, Trinken oder Snacks sind <strong><span style="text-decoration: underline double;">nicht erlaubt</span></strong>. Dort kann man an der Theke etwas bestellen. Alkoholische Getränge werden nur an Personen ab 18 Jahren serviert/verkauft!
   <a href="https://www.superbowl-nrw.de/images/2024/SB_speisen_getraenke_2024.pdf" target="_blank" style="color:#00fff7; text-decoration:underline;">Speisekarte & Getränkeliste</a></p>
 </div>
+
+<!-- Kontener formularza -->
+<div id="form-container">
+  <form id="eventForm" class="form" action="https://api.web3forms.com/submit" method="POST" onsubmit="return handleSubmit(event)">
+    
+    <!-- Web3Forms Access Key -->
+    <input type="hidden" name="access_key" value="aa18d4a6-2e63-448c-b221-21b0f8b695c9">
+    <input type="hidden" name="subject" value="Nowe zgłoszenie z formularza Event!">
+    <input type="hidden" name="from_name" value="Calf & Wolf Event Website">
+
+    <!-- Pola formularza -->
+    <input type="text" name="name" placeholder="Vorname und Name" required>
+    <label class="form-label">Geburtsdatum</label>
+    <input type="date" name="birthdate" required>
+    <input type="text" name="fursuit" placeholder="Fursuit name" required>
+    <input type="email" name="email" placeholder="Email" required>
+
+    <select id="ticketSelect" name="ticket" required>
+        <option value="">Wahle Ticket aus</option>
+        <option value="Standard Ticket">Standard Ticket</option>
+        <option value="Sponsor Ticket">Sponsor Ticket</option>
+        <option value="Supersponsor Ticket">Supersponsor Ticket</option>
+    </select>
+
+    <div id="supersponsor-backname-section" style="display:none;">
+        <label class="form-label">T-Shirt Größe
+            <span class="size-info" tabindex="0">i
+                <span class="size-tooltip">Heather Grey: 97% Baumwolle / 3% Polyester, 40 °C waschbar, Trockner geeignet, Bügeln erlaubt<br>S → W: 48,5cm L: 69,5cm<br>M → W: 53,5cm L: 72cm<br>L → W: 56cm L: 74,5cm<br>XL → W: 61cm L: 77cm<br>XXL → W: 66cm L: 78,5cm</span>
+            </span>
+        </label>
+        <select name="supersponsor_shirt_size" required>
+            <option value="">Wähle Größe</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+        </select>
+
+        <div id="supersponsor-shirt-color-section" style="display:none;">
+            <label class="form-label">Wähle Farbe</label>
+            <div class="shirt-color-group">
+                <label class="shirt-color-option">
+                    <input type="radio" name="supersponsor_shirt_color" value="Sky Blue">
+                    <span class="color-box sky-blue"></span>
+                    Sky Blue
+                </label>
+                <label class="shirt-color-option">
+                    <input type="radio" name="supersponsor_shirt_color" value="Dark Grey">
+                    <span class="color-box dark-grey"></span>
+                    Dark Grey
+                </label>
+                <label class="shirt-color-option">
+                    <input type="radio" name="supersponsor_shirt_color" value="Deep Navy">
+                    <span class="color-box deep-navy"></span>
+                    Deep Navy
+                </label>
+            </div>
+        </div>
+
+        <label class="form-label">Name auf dem Rücken (Max. 12 Zeichen)</label>
+        <input type="text" name="supersponsor_shirt_backname" maxlength="12" placeholder="z.B. Borys" pattern="^[a-zA-Z0-9_ ]*$" title="Nur Buchstaben, Zahlen, Unterstriche und Leerzeichen erlaubt">
+    </div>
+
+    <label class="form-label">Möchtest du ein T-shirt für 20 € dazu? *
+        <span class="size-info" tabindex="0">i
+            <span class="size-tooltip">Heather Grey: 97% Baumwolle / 3% Polyester, 40 °C waschbar, Trockner geeignet, Bügeln erlaubt<br>S → W: 48,5cm L: 69,5cm<br>M → W: 53,5cm L: 72cm<br>L → W: 56cm L: 74,5cm<br>XL → W: 61cm L: 77cm<br>XXL → W: 66cm L: 78,5cm</span>
+        </span>
+    </label>
+    <select id="shirtSize" name="shirt_size" required>
+        <option value="">Wähle Größe</option>
+        <option value="Nein">Nein</option>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+        <option value="XXL">XXL</option>
+    </select>
+
+    <div id="shirt-color-section" style="display:none;">
+        <label class="form-label">Wähle Farbe</label>
+        <div class="shirt-color-group">
+            <label class="shirt-color-option">
+                <input type="radio" name="shirt_color" value="Sky Blue">
+                <span class="color-box sky-blue"></span>
+                Sky Blue
+            </label>
+            <label class="shirt-color-option">
+                <input type="radio" name="shirt_color" value="Dark Grey">
+                <span class="color-box dark-grey"></span>
+                Dark Grey
+            </label>
+            <label class="shirt-color-option">
+                <input type="radio" name="shirt_color" value="Deep Navy">
+                <span class="color-box deep-navy"></span>
+                Deep Navy
+            </label>
+        </div>
+    </div>
+
+    <div id="shirt-backname-section" style="display:none;">
+        <label class="form-label">Für 5€ extra Personalisieren? Name auf dem Rücken (Max. 12 Zeichen)</label>
+        <input type="text" name="shirt_backname" maxlength="12" placeholder="z.B. Borys" pattern="^[a-zA-Z0-9_ ]*$" title="Nur Buchstaben, Zahlen, Unterstriche und Leerzeichen erlaubt">
+    </div>
+
+    <label class="checkbox">
+        <input type="checkbox" required>
+        <span>Ich verstehe dass in dem Bowlingbereich nur die Bowlingschuhe erlaubt sind</span>
+    </label>
+
+    <label class="checkbox">
+  <input type="checkbox" name="fursuiter" value="Ja">
+  <span>Fursuiter</span>
+</label>
+
+    <textarea name="notes" placeholder="Gibt es was, was ich als Veranstalter über dich wissen muss?"></textarea>
+
+    <button type="submit" class="przycisk">Anmeldung absenden</button>
+  </form>
+</div>
+
+<!-- Miejsce na komunikat po wysłaniu -->
+<div id="thankyou-message" style="display:none; text-align:center; margin-top:30px; font-size:1.5rem; color:#dbdbdb;">
+  Vielen Dank für die Anmeldung! Ich verarbeite die so schnell wie möglich :)
+</div>
+
+<script>
+function handleSubmit(event) {
+    event.preventDefault(); // blokuje domyślne wysłanie formularza
+    
+    // wysyłka przez Web3Forms
+    const form = event.target;
+    fetch(form.action, {
+        method: form.method,
+        body: new FormData(form)
+    }).then(() => {
+        // po wysłaniu ukryj formularz
+        document.getElementById('form-container').style.display = 'none';
+        // pokaż komunikat
+        document.getElementById('thankyou-message').style.display = 'block';
+    }).catch(err => alert('Etwas schief gelaufen... Versuche später nochmal!'));
+}
+
+function handleTicketSelection() {
+    const ticketSelect = document.getElementById('ticketSelect');
+    const ticket = ticketSelect ? ticketSelect.value : '';
+    const supersponsorSection = document.getElementById('supersponsor-backname-section');
+    const supersponsorSizeSelect = document.querySelector('select[name="supersponsor_shirt_size"]');
+    const supersponsorColorInputs = document.querySelectorAll('input[name="supersponsor_shirt_color"]');
+    const supersponsorBacknameInput = document.querySelector('input[name="supersponsor_shirt_backname"]');
+
+    if (ticket === 'Supersponsor Ticket') {
+        supersponsorSection.style.display = 'block';
+        if (supersponsorSizeSelect) supersponsorSizeSelect.required = true;
+        if (supersponsorBacknameInput) supersponsorBacknameInput.required = true;
+        // Show color section immediately for supersponsor
+        const colorSection = document.getElementById('supersponsor-shirt-color-section');
+        if (colorSection) colorSection.style.display = 'block';
+        if (supersponsorColorInputs) {
+            supersponsorColorInputs.forEach(input => input.required = true);
+        }
+    } else {
+        supersponsorSection.style.display = 'none';
+        if (supersponsorSizeSelect) {
+            supersponsorSizeSelect.required = false;
+            supersponsorSizeSelect.value = '';
+        }
+        if (supersponsorColorInputs) {
+            supersponsorColorInputs.forEach(input => {
+                input.required = false;
+                input.checked = false;
+            });
+        }
+        if (supersponsorBacknameInput) {
+            supersponsorBacknameInput.required = false;
+            supersponsorBacknameInput.value = '';
+        }
+        // Hide color section
+        const colorSection = document.getElementById('supersponsor-shirt-color-section');
+        if (colorSection) colorSection.style.display = 'none';
+    }
+}
+
+function handleSupersponsorShirtSelection() {
+    // For supersponsor, color is always shown and required
+    const colorSection = document.getElementById('supersponsor-shirt-color-section');
+    const colorInputs = document.querySelectorAll('input[name="supersponsor_shirt_color"]');
+    if (colorSection) colorSection.style.display = 'block';
+    if (colorInputs) colorInputs.forEach(input => input.required = true);
+}
+
+function handleShirtSelection() {
+    const shirtSelect = document.getElementById('shirtSize');
+    const size = shirtSelect ? shirtSelect.value : '';
+    const colorSection = document.getElementById('shirt-color-section');
+    const backnameSection = document.getElementById('shirt-backname-section');
+    const colorInputs = document.querySelectorAll('input[name="shirt_color"]');
+    const backnameInput = document.querySelector('input[name="shirt_backname"]');
+
+    if (size && size !== 'Nein') {
+        colorSection.style.display = 'block';
+        backnameSection.style.display = 'block';
+        colorInputs.forEach(input => input.required = true);
+        if (backnameInput) backnameInput.required = false; // Optional
+    } else {
+        colorSection.style.display = 'none';
+        backnameSection.style.display = 'none';
+        colorInputs.forEach(input => {
+            input.required = false;
+            input.checked = false;
+        });
+        if (backnameInput) {
+            backnameInput.required = false;
+            backnameInput.value = '';
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const ticketSelect = document.getElementById('ticketSelect');
+    const shirtSelect = document.getElementById('shirtSize');
+    const supersponsorShirtSelect = document.querySelector('select[name="supersponsor_shirt_size"]');
+    
+    if (ticketSelect) {
+        ticketSelect.addEventListener('change', handleTicketSelection);
+        handleTicketSelection();
+    }
+    
+    if (shirtSelect) {
+        shirtSelect.addEventListener('change', handleShirtSelection);
+        handleShirtSelection();
+    }
+
+    if (supersponsorShirtSelect) {
+        supersponsorShirtSelect.addEventListener('change', handleSupersponsorShirtSelection);
+        handleSupersponsorShirtSelection();
+    }
+});
+</script>
 
 <!-- Stopka -->
 <!-- Pasek trawy -->
