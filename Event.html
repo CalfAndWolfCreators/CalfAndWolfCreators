@@ -800,8 +800,8 @@ button.przycisk:hover {
             </span>
         </label>
         <select name="supersponsor_shirt_size" required>
-            <option value="XS">Wähle Größe</option>
-            <option value="S">XS</option>
+            <option value="" selected>Wähle Größe</option>
+            <option value="XS">XS</option>
             <option value="S">S</option>
             <option value="M">M</option>
             <option value="L">L</option>
@@ -936,6 +936,7 @@ function handleTicketSelection() {
         if (supersponsorSizeSelect) {
             supersponsorSizeSelect.required = false;
             supersponsorSizeSelect.value = '';
+            supersponsorSizeSelect.selectedIndex = 0;
         }
         if (supersponsorColorInputs) {
             supersponsorColorInputs.forEach(input => {
