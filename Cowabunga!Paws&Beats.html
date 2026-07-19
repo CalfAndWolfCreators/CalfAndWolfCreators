@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1024">
+<title>Cowabunga! Paws & Beats | Calf & Wolf creators</title>
+<style>
+body {
+    background-color: #103A0D;
+    color: #dbdbdb;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.poster-card {
+    max-width: 960px;
+    margin: 0 auto 30px;
+    padding: 34px 28px;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    text-align: center;
+}
+
+.poster-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-bottom: 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.12);
+    color: #ffe600;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.poster-card h2 {
+    margin: 0 0 10px;
+    font-size: 2.2rem;
+    color: #ffffff;
+}
+
+.poster-card p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #e7e7e7;
+}
+
+.event-summary {
+    max-width: 760px;
+    margin: 0 auto 30px;
+    padding: 20px 24px;
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.05);
+    text-align: center;
+    font-size: 1.15rem;
+}
+
+.event-summary p {
+    margin: 8px 0;
+}
+
+.menu {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.przycisk {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 25px;
+    background-color: #266b3d;
+    color: #fff;
+    border: none;
+    margin: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background 0.3s;
+}
+.przycisk:hover { background-color: #3a7d44; }
+.przycisk.active { background-color: #dbdbdb; color: #103A0D; }
+
+.logo { text-align: center; margin: 10px auto 30px auto; }
+.logo img { max-width: 720px; width: 100%; height: auto; display: inline-block; }
+
+.neon-text {
+    font-size: 3.5rem;
+    font-weight: 900;
+    font-family: Arial, sans-serif;
+    letter-spacing: 2px;
+    opacity: 0.8;
+    background: linear-gradient(270deg,#00fff7,#ff00ea,#ffe600,#00ff2a,#00fff7);
+    background-size: 400% 400%;
+    animation: neon-gradient 6s ease-in-out infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin-bottom: 20px;
+}
+@keyframes neon-gradient {0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+@keyframes colorCycle {
+    0% { color: #ffffff; }
+    25% { color: #ffe600; }
+    50% { color: #4cc3ff; }
+    75% { color: #000000; }
+    100% { color: #ffffff; }
+}
+
+.colorful-text {
+    animation: colorCycle 8s ease-in-out infinite;
+}
+
+.rainbow-checkmark {
+    background: linear-gradient(270deg, #00fff7, #ff00ea, #ffe600, #00ff2a, #00fff7);
+    background-size: 400% 400%;
+    animation: neon-gradient 6s ease-in-out infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.next-event {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 auto 20px auto;
+}
+
+.urgent-notice {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #ffe600;
+    margin: 0 auto 30px auto;
+    text-transform: uppercase;
+    animation: blink 1s steps(1, end) infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+}
+
+.time-old {
+    text-decoration: line-through;
+    color: #8a8a8a;
+}
+
+.time-new {
+    margin-top: 6px;
+    font-weight: 600;
+}
+
+.section-subtitle-text.event-info {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    line-height: 0.5;
+    text-align: center;
+    margin: 0px 50px 50px
+}
+
+.section-subtitle {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    text-align: center;
+    margin-bottom: 40px; /* większy odstęp nad ticketami */
+}
+
+    .event-rules {
+    max-width: 900px;               /* ograniczenie szerokości dla lepszej czytelności */
+    margin: 40px auto;              /* odstęp od góry i wyśrodkowanie */
+    font-size: 1.2rem;              /* dopasowane do reszty strony */
+    line-height: 1.5;               /* odstęp między liniami */
+    color: #dbdbdb;                 /* ten sam kolor tekstu co reszta */
+    text-align: left;               /* tekst wyrównany do lewej */
+    font-family: 'Arial', sans-serif; /* spójna czcionka */
+}
+
+.event-rules p {
+    margin-bottom: 15px;            /* odstęp między paragrafami */
+}
+
+.event-rules a {
+    color: #00fff7;                 /* kolor linków pasujący do neonów */
+    text-decoration: underline;     /* podkreślenie linku */
+}
+
+.tickets {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.ticket {
+    background: linear-gradient(180deg, #f6f6f6 0%, #e7e7e7 100%);
+    color: #103A0D;
+    padding: 28px 24px;
+    width: 280px;
+    text-align: center;
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+    border: 2px solid #ffffff;
+}
+
+.ticket h3 {
+    margin-bottom: 10px;
+    font-size: 1.45rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.ticket.vip {
+    background: linear-gradient(135deg, #fff7b3 0%, #f3c64b 40%, #ffe600 100%);
+    border: 2px solid #ffe600;
+    box-shadow: 0 0 24px rgba(255,230,0,0.35);
+}
+
+.price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 10px 0 6px;
+}
+
+.ticket-note {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+form {
+    max-width: 600px;       
+    margin: 0 auto 80px;    
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 1.2rem;
+}
+
+/* Input, select, textarea */
+.form input,
+.form select,
+.form textarea {
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    border-radius: 6px;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Checkboxy – teraz pełna szerokość formularza i wyśrodkowane */
+.checkbox {
+    display: flex;
+    align-items: center;   /* wyrównanie checkboxa i tekstu w jednej linii */
+    gap: 10px;             /* odstęp między checkboxem a tekstem */
+    font-size: 1.2rem;     /* rozmiar tekstu */
+    margin: 5px 0;         /* odstęp między liniami checkboxów */
+}
+
+.checkbox input {
+    width: 18px;            /* małe pole do zaznaczenia */
+    height: 18px;
+    margin: 0;              /* usuwa dodatkowe marginesy */
+    flex-shrink: 0;         /* nie kurczy się */
+}
+
+/* Tekst w textarea większy */
+textarea {
+    min-height: 120px;
+    resize: vertical;
+    font-size: 1.2rem;
+}
+
+/* Przycisk */
+button.przycisk {
+    width: 100%;
+    font-size: 1.3rem;
+    padding: 12px 0;
+    display: flex;               /* używamy flexbox */
+    align-items: center;         /* wyśrodkowanie pionowe */
+    justify-content: center;     /* wyśrodkowanie poziome */
+    cursor: pointer;
+    background-color: #266b3d;
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+button.przycisk:hover {
+    background-color: #3a7d44;
+}
+
+.shirt-size-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.shirt-size-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border: 1px solid #57765a;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.05);
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.shirt-size-option:hover {
+    border-color: #b8d1a1;
+    background: rgba(255,255,255,0.08);
+}
+
+.shirt-size-option input {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+}
+
+.shirt-size-label {
+    font-weight: 700;
+}
+
+.size-info {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #fff;
+    background: #4a4a4a;
+    font-size: 0.75rem;
+    position: relative;
+    cursor: default;
+}
+
+.size-tooltip {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 10px);
+    transform: translateX(-50%);
+    display: none;
+    width: 240px;
+    max-width: 280px;
+    padding: 10px;
+    background: #3a3a3a;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    text-align: left;
+    line-height: 1.3;
+    z-index: 20;
+    white-space: normal;
+}
+
+.shirt-color-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    margin-bottom: 20px; /* zwiększony odstęp poniżej wyboru koloru */
+}
+
+.size-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.95) transparent transparent transparent;
+}
+
+.size-info:hover .size-tooltip,
+.size-info:focus .size-tooltip {
+    display: block;
+}
+
+.shirt-color-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border: 1px solid #57765a;
+    border-radius: 10px;
+    cursor: pointer;
+    background: rgba(255,255,255,0.04);
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.shirt-color-option:hover {
+    border-color: #b8d1a1;
+    background: rgba(255,255,255,0.08);
+}
+
+.shirt-color-option input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+}
+
+.color-box {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: 2px solid #000;
+    display: inline-block;
+}
+
+.color-box.Schwarz { background-color: #000000; }
+.color-box.Mocha { background-color: #523a24; }
+.color-box.Natural { background-color: #ccbf9a; }
+
+
+
+
+
+
+
+
+.footer {
+  background-color: #103A0D; /* ciemne tło, pasujące do strony */
+  color: #dbdbdb;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 0;
+  user-select: none;
+}
+
+.grass-divider {
+  background-image: url('grass.svg');      /* użyj swojej ścieżki */
+  background-repeat: repeat-x;             /* powtarzanie tylko w poziomie */
+  background-size: auto 100%;              /* szerokość automatyczna, wysokość dopasowana */
+  height: 120px;                             /* ustaw wysokość na wysokość obrazka SVG */
+  width: 100%;
+  margin-top: 40px;
+}
+
+.footer-title {
+  font-size: 3.2rem;
+  font-weight: 900;
+  font-family: 'Arial', sans-serif;
+  color: #dbdbdb;
+  margin: 0 0 20px;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  letter-spacing: 1px;
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  color: #dbdbdb;
+}
+
+.email-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.email-text {
+  user-select: text;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  max-width: 320px;
+  margin: 0 auto 30px;
+  gap: 25px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #266b3d;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 18px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease;
+}
+
+.social-btn img {
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(0 0 1px rgba(0,0,0,0.5));
+}
+
+.social-btn:hover {
+  background-color: #3a7d44;
+}
+
+.social-btn.youtube:hover {
+  background-color: #ff0000;
+}
+
+.social-btn.telegram:hover {
+  background-color: #0088cc;
+}
+
+.social-btn.facebook:hover {
+  background-color: #1877f2;
+}
+
+.brown-bar {
+  background-color: #5c3a1a; /* brązowy pasek */
+  /* zamiast stałej wysokości dajemy padding, aby treść mogła się ładnie dopasować */
+  padding: 20px 10px;
+  color: #dbdbdb;
+  font-size: 40px;
+  font-weight: 400;
+  font-family: arial, sans-serif;
+  line-height: 1.2;            /* zapewnia odstęp między wierszami, unikając nachodzenia */
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  margin-top: 20px; /* opcjonalnie, żeby odseparować od powyższego */
+  border-top: 10px solid white;
+  border-bottom: 10px solid white;
+  text-align: center;
+  /* umożliwia zawijanie bez rozjeżdżania się elementu*/
+  flex-wrap: wrap;
+}
+
+.form-label {
+  font-size: 1rem;
+  margin-bottom: 5px; /* zmniejszony odstęp powyżej inputa */
+  display: block;
+  color: #dbdbdb;
+}
+
+@media (max-width: 768px) {
+
+  .tickets {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ticket {
+    width: 90%;
+    max-width: 320px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  form {
+    padding: 0 15px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .section-subtitle-text.event-info {
+    line-height: 1.4;
+    margin: 0 20px 40px;
+    font-size: 1.4rem;
+  }
+
+}
+
+.participant-table {
+  font-size: 2rem;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+  .participant-table {
+    font-size: 1rem;
+  }
+}
+
+.participant-section {
+  max-width: 900px;
+  margin: 20px auto 35px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 0 20px;
+}
+
+.participants-table {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: Arial, sans-serif;
+  font-size: 0.95rem;
+  color: #ffffff;
+  background: transparent;
+}
+
+.participants-table th,
+.participants-table td {
+  padding: 10px 12px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.22);
+  background: transparent;
+}
+
+.participants-table th {
+  color: #ffffff;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 700;
+}
+
+.participants-table td {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.participants-table .standard td {
+  color: #ffffff;
+  background: transparent;
+}
+
+.participants-table .vip td {
+  color: transparent;
+  background: linear-gradient(90deg, #fff7b3 0%, #ffd84d 35%, #ffffff 50%, #ffd84d 65%, #fff7b3 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: gold-shimmer 2.4s ease-in-out infinite;
+}
+
+@keyframes gold-shimmer {
+  0%, 70%, 100% {
+    background-position: 0% 50%;
+  }
+  72%, 85% {
+    background-position: 100% 50%;
+  }
+}
+
+.checkmark {
+  color: #00ff88;
+  font-weight: 700;
+}
+
+.crossmark {
+  color: #ff6b6b;
+  font-weight: 700;
+}
+
+/* Mobile responsiveness for footer */
+@media (max-width: 768px) {
+  .footer-title {
+    font-size: 2rem;
+  }
+  .contact-info {
+    font-size: 16px;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .social-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .social-btn {
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+  .brown-bar {
+    font-size: 20px;
+    /* usuń stałą wysokość, dla mobilnej wersji też użyj paddingu */
+    padding: 15px 8px;
+    line-height: 1.2;
+  }
+  .grass-divider {
+    height: 80px;
+  }
+}</style>
+</head>
+<body>
+
+<div class="menu">
+  <a class="przycisk" href="Home.html">Home</a>
+  <a class="przycisk" href="Fursuit.html">Fursuit & Fursuit parts</a>
+  <a class="przycisk" href="Plushies.html">Plushies & Props</a>
+  <a class="przycisk" href="Merch.html">Patches, Merch & more...</a>
+  <a class="przycisk" href="AboutUs.html">About Us</a>
+  <a class="przycisk" href="Contact.html">Commission / Contact / Q&A</a>
+  <a class="przycisk" href="Shop.html">Our Shop</a>
+</div>
+
+<div class="logo">
+    <img src="logo.png" alt="Moje logo">
+</div>
+
+<h1 class="neon-text" style="font-size: 2.6rem; margin-bottom: 12px;">Cowabunga! Paws &amp; Beats</h1>
+
+<div class="event-summary" style="margin-bottom: 20px; border: none; background: transparent; padding: 0; max-width: 760px; font-size: 1.5rem; text-align: center;">
+    <p><strong>Where:</strong> Am Heimchen</p>
+    <p><strong>Address:</strong> Gneisenaustraße 58, 46535 Dinslaken, Germany</p>
+    <p><a href="https://maps.app.goo.gl/NEwco9Scyn5ZNCUJ7" target="_blank" style="color:#00fff7; text-decoration:underline; font-weight:600;">View on Maps</a></p>
+    <p><strong>Date:</strong> 16–17. April 2027</p>
+    <p><strong>Time:</strong> 2PM – 4AM</p>
+</div>
+
+<h2 class="section-subtitle">Tickets</h2>
+
+<div class="tickets">
+    <div class="ticket">
+        <h3>Standard Ticket</h3>
+        <p class="price">Price: TBD</p>
+        <ul style="list-style:none; padding:0; margin:10px 0 0; font-weight:600; line-height:1.8;">
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+        </ul>
+    </div>
+    <div class="ticket vip">
+        <h3>VIP Ticket</h3>
+        <p class="price">Price: TBD</p>
+        <ul style="list-style:none; padding:0; margin:10px 0 0; font-weight:600; line-height:1.8;">
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+        </ul>
+    </div>
+</div>
+
+<div class="event-rules">
+  <p><strong>Participants:</strong><br>
+  Fullsuiters, partial-suiters, cosplayers, and non-suiters are all warmly welcome. Participation is open to guests aged 18 and above.</p>
+
+  <p><strong>Respect &amp; Consent:</strong><br>
+  Please respect other attendees and their personal boundaries. Always ask before touching someone, their fursuit, costume, or personal belongings. A “no” always means no.</p>
+
+  <p><strong>Allowed props:</strong><br>
+  Props and small plushies that do not disturb other participants (estimated up to 40 cm, but we won’t be measuring – no worries :D) are allowed. Please leave larger plushies and props at home.</p>
+
+  <p><strong>Not allowed:</strong><br>
+  Sex toys, sharp or pointed parts of fursuits/cosplays that could injure others, paints or other materials that could stain or dirty other participants, and personal drinks. Smoking is prohibited inside the dance hall and is only allowed outside in designated areas.</p>
+
+  <p><strong>Photos &amp; Videos:</strong><br>
+  Photos and videos are only allowed in the dance hall and outdoor areas. Photography or filming is not permitted in the changing lounge or restrooms.</p>
+
+  <p><strong>Behavior:</strong><br>
+  If someone behaves inappropriately or is excessively intoxicated, they may be removed from the event without a refund of the ticket price.</p>
+
+  <p><strong>Additional Information:</strong><br>
+  Please do not enter any neighboring gardens or use any items or facilities located in them. Our designated areas are: the restrooms, the dance hall, the Fursuit Lounge (for fursuiters and their helpers only), and the outdoor area belonging to the dance hall. Anyone who violates this rule will be removed from the event without a refund of the ticket price. They may also be held responsible for any costs caused by their actions, such as damage to gardens, property, or other belongings.<br><br>
+  If something is accidentally damaged during the event, please inform a staff member. We will take care of the situation and help resolve the issue. Staff members will be introduced at the beginning of the event and will be clearly visible and easy to recognize throughout the event.<br><br>
+  Accidents happen ;)
+  </p>
+
+  <p><strong>Lost &amp; Found:</strong><br>
+  Please take care of your personal belongings. The organizers are not responsible for lost, stolen, or damaged items. Found items will be collected and stored by the staff.</p>
+
+  <p><strong>Tickets &amp; Payment:</strong><br>
+  Tickets must be purchased and paid for in advance. There will be a very limited number of tickets available at the door, and only standard tickets will be available for on-site purchase.<br><br>
+  Payment can be made via bank transfer or PayPal. If you live nearby, cash payment is also possible (with a receipt, by prior arrangement).<br><br>
+  Once a ticket has been purchased, it is non-refundable.<br><br>
+  Transferring a ticket to another person is allowed, but it must be confirmed via email (<a href="mailto:dominika.lenska@web.de">dominika.lenska@web.de</a>) or Telegram (@BorysTheCalf), with confirmation from both the original ticket holder and the new attendee.</p>
+
+  <p><strong>Food &amp; Drinks:</strong><br>
+  Bringing your own food and snacks is allowed with prior approval. Some furries have allergies, and we want to make sure that nobody ends up in the hospital because of an unexpected reaction.<br><br>
+  Bringing your own drinks is not allowed. There will be a bar available at the event, and free water will be provided at the bar and in the Fursuit Lounge.<br><br>
+  A drink menu will be published shortly before the event, together with the food menu, on the website and in the Telegram channel. We will have something for everyone!</p>
+</div>
+
+<table class="participants-table"> <!-- 🇬🇧 🇩🇪 -->
+
+  <tr>
+    <th>🌐</th>
+    <th>Fursuitname</th>
+    <th>Ticket</th>
+    <th>Fursuiter</th>
+    <th>Extras</th>
+  </tr>
+
+  <tr class="vip">
+    <td>🇩🇪</td>
+    <td>Borys</td>
+    <td>VIP</td>
+    <td>✔</td>
+    <td>Event Host/Bartender</td>
+  </tr>
+
+  <tr class="vip">
+    <td>🇩🇪</td>
+    <td>Isaak</td>
+    <td>VIP</td>
+    <td></td>
+    <td>Security Staff</td>
+  </tr>
+
+</table>
+<script>
+function handleSubmit(event) {
+    event.preventDefault(); // blokuje domyślne wysłanie formularza
+    
+    // wysyłka przez Web3Forms
+    const form = event.target;
+    fetch(form.action, {
+        method: form.method,
+        body: new FormData(form)
+    }).then(() => {
+        // po wysłaniu ukryj formularz
+        document.getElementById('form-container').style.display = 'none';
+        // pokaż komunikat
+        document.getElementById('thankyou-message').style.display = 'block';
+    }).catch(err => alert('Etwas schief gelaufen... Versuche später nochmal!'));
+}
+
+function handleTicketSelection() {
+    const ticketSelect = document.getElementById('ticketSelect');
+    const ticket = ticketSelect ? ticketSelect.value : '';
+    const supersponsorSection = document.getElementById('supersponsor-backname-section');
+    const supersponsorSizeSelect = document.querySelector('select[name="supersponsor_shirt_size"]');
+    const supersponsorColorInputs = document.querySelectorAll('input[name="supersponsor_shirt_color"]');
+    const supersponsorBacknameInput = document.querySelector('input[name="supersponsor_shirt_backname"]');
+
+    if (ticket === 'Supersponsor Ticket') {
+        supersponsorSection.style.display = 'block';
+        if (supersponsorSizeSelect) supersponsorSizeSelect.required = true;
+        if (supersponsorBacknameInput) supersponsorBacknameInput.required = true;
+        // Show color section immediately for supersponsor
+        const colorSection = document.getElementById('supersponsor-shirt-color-section');
+        if (colorSection) colorSection.style.display = 'block';
+        if (supersponsorColorInputs) {
+            supersponsorColorInputs.forEach(input => input.required = true);
+        }
+    } else {
+        supersponsorSection.style.display = 'none';
+        if (supersponsorSizeSelect) {
+            supersponsorSizeSelect.required = false;
+            supersponsorSizeSelect.value = '';
+            supersponsorSizeSelect.selectedIndex = 0;
+        }
+        if (supersponsorColorInputs) {
+            supersponsorColorInputs.forEach(input => {
+                input.required = false;
+                input.checked = false;
+            });
+        }
+        if (supersponsorBacknameInput) {
+            supersponsorBacknameInput.required = false;
+            supersponsorBacknameInput.value = '';
+        }
+        // Hide color section
+        const colorSection = document.getElementById('supersponsor-shirt-color-section');
+        if (colorSection) colorSection.style.display = 'none';
+    }
+}
+
+function handleSupersponsorShirtSelection() {
+    // For supersponsor, color is always shown and required
+    const colorSection = document.getElementById('supersponsor-shirt-color-section');
+    const colorInputs = document.querySelectorAll('input[name="supersponsor_shirt_color"]');
+    if (colorSection) colorSection.style.display = 'block';
+    if (colorInputs) colorInputs.forEach(input => input.required = true);
+}
+
+function handleShirtSelection() {
+    const shirtSelect = document.getElementById('shirtSize');
+    const size = shirtSelect ? shirtSelect.value : '';
+    const colorSection = document.getElementById('shirt-color-section');
+    const colorInputs = document.querySelectorAll('input[name="shirt_color"]');
+
+    if (size && size !== 'Nein') {
+        colorSection.style.display = 'block';
+        colorInputs.forEach(input => input.required = true);
+    } else {
+        colorSection.style.display = 'none';
+        colorInputs.forEach(input => {
+            input.required = false;
+            input.checked = false;
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const ticketSelect = document.getElementById('ticketSelect');
+    const shirtSelect = document.getElementById('shirtSize');
+    const supersponsorShirtSelect = document.querySelector('select[name="supersponsor_shirt_size"]');
+    
+    if (ticketSelect) {
+        ticketSelect.addEventListener('change', handleTicketSelection);
+        handleTicketSelection();
+    }
+    
+    if (shirtSelect) {
+        shirtSelect.addEventListener('change', handleShirtSelection);
+        handleShirtSelection();
+    }
+
+    if (supersponsorShirtSelect) {
+        supersponsorShirtSelect.addEventListener('change', handleSupersponsorShirtSelection);
+        handleSupersponsorShirtSelection();
+    }
+});
+</script>
+
+<div class="poster-section" style="max-width: 580px; margin: 30px auto 0; padding: 0 20px;">
+  <img src="Dance Plakat EN.png" alt="Dance poster" style="width: 100%; height: auto; display: block; border-radius: 16px; box-shadow: 0 10px 24px rgba(0,0,0,0.25);">
+</div>
+
+<!-- Stopka -->
+<!-- Pasek trawy -->
+<div class="grass-divider">
+</div>
+
+<!-- Kontakt i Social Media -->
+<footer class="footer">
+  <h2 class="commission-title">Contact & Socialmedia</h2>
+  
+  <div class="contact-info">
+    <img src="email-icon.png" alt="Email icon" class="email-icon" />
+    <span class="email-text">cw-sales@protonmail.com</span>
+  </div>
+  
+  <div class="social-buttons">
+    <a href="https://www.youtube.com/@CalfAndWolfCreators" target="_blank" class="social-btn youtube">
+      <img src="youtube-icon.png" alt="YouTube" /> Youtube
+    </a>
+    <a href="https://t.me/CalfAndWolfCreators" target="_blank" class="social-btn telegram">
+      <img src="telegram-icon.png" alt="Telegram" /> Telegram
+    </a>
+    <a href="https://www.facebook.com/CalfAndWolfCreators/" target="_blank" class="social-btn facebook">
+      <img src="facebook-icon.png" alt="Facebook" /> Facebook
+    </a>
+  </div>
+</footer>
+
+<!-- Brązowy pasek na dole -->
+<div class="brown-bar">
+  ©2024 created by Calf & Wolf creators | Fursuit makers from Germany
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
