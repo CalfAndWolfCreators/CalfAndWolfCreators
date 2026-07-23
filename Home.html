@@ -5,209 +5,212 @@
     <meta name="viewport" content="width=1024">
     <title>Home | Calf & Wolf creators</title>
     <style>
-        body {
-            background-color: #103A0D;
-            color: #dbdbdb; /* domyślny kolor tekstu */
-        }
-        .menu {
-            text-align: center; /* wyśrodkowanie przycisków */
-            margin-bottom: 20px;
-        }
-        .przycisk {
-  height: 40px;
-  line-height: 40px;
-  padding: 0 25px;
-  background-color: #266b3d;
-  color: #fff;
-  border: none;
-  border-radius: 0;
-  margin: 5px;
-  font-size: 18px;
-  cursor: pointer;
-  display: inline-block;
-  vertical-align: middle;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  transition: background 0.3s;
-  text-decoration: none;   /* ⬅ usuwa podkreślenie */
-  font-weight: bold;       /* ⬅ pogrubienie */
-  text-align: center;      /* ⬅ poziome wyśrodkowanie */
-        }
-        .przycisk:hover {
-            background-color: #3a7d44;
-        }
-        .przycisk.active {
-            background-color: #dbdbdb; /* jaśniejszy kolor */
-            color: #103A0D;            /* zielony jak tło */
-            font-weight: bold;         /* opcjonalnie pogrubienie */
-        }
+body {
+ background-color: #103A0D;
+ color: #dbdbdb; /* domyślny kolor tekstu */
+}
 
-        a.przycisk {
+.menu {
+  text-align: center; /* wyśrodkowanie przycisków */
+  margin-bottom: 20px;
+ }
+ .przycisk {
+   height: 40px;
+   line-height: 40px;
+   padding: 0 25px;
+   background-color: #266b3d;
+   color: #fff;
+   border: none;
+   border-radius: 0;
+   margin: 5px;
+   font-size: 18px;
+   cursor: pointer;
+   display: inline-block;
+   vertical-align: middle;
+   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+   transition: background 0.3s;
+   text-decoration: none;   /* ⬅ usuwa podkreślenie */
+   font-weight: bold;       /* ⬅ pogrubienie */
+   text-align: center;      /* ⬅ poziome wyśrodkowanie */
+   }
+  .przycisk:hover {
+   background-color: #3a7d44;
+   }
+  .przycisk.active {
+    background-color: #dbdbdb; /* jaśniejszy kolor */
+    color: #103A0D;            /* zielony jak tło */
+    font-weight: bold;         /* opcjonalnie pogrubienie */
+   }
+
+  a.przycisk {
     display: inline-block;
     text-decoration: none;
     text-align: center;
+   } 
+
+.logo {
+ margin: 10px auto 30px auto; /* 10px odstępu od menu, 30px pod logo */
+ text-align: center;
+ }
+  .logo img {
+   max-width: 660px; /* 300% poprzedniego rozmiaru */
+    width: 100%;
+    height: auto;
+    display: inline-block;
+   }
+
+  .neon-img {
+    width: 48%; /* szerokość PNGE */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+   }
+  .rainbow-border {
+    border: 3px solid transparent;
+    border-radius: 12px;
+    padding: 4px;
+    background: linear-gradient(270deg, 
+    rgba(255,0,0,0.75), 
+    rgba(255,153,0,0.75), 
+    rgba(255,238,0,0.75), 
+    rgba(51,255,0,0.75), 
+    rgba(0,255,238,0.75), 
+    rgba(0,102,255,0.75), 
+    rgba(204,0,255,0.75), 
+    rgba(255,0,0,0.75)
+    );
+    background-size: 1600% 1600%;
+    animation: rainbow 10s linear infinite;
+    box-sizing: border-box;
+    max-width: 1000px;
+    width: 48%;
+    height: auto;
+    margin: 0 auto;
+    display: inline-block;
+   }
+
+  @keyframes rainbow {
+   0% { background-position: 0% 50%; }
+   100% { background-position: 100% 50%; }
+  }
+
+.neon-bar {
+  width: 100%;
+  height: 190px; /* nowa wysokość paska */
+  background: rgba(0,0,0,0.85);
+  margin: 40px 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  overflow: hidden;
+  padding: 0;
+  }
+  .neon-text {
+    font-size: 2.8rem;    /* większy tekst */
+    font-weight: 900;     /* grubszy tekst */
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 1px;
+    opacity: 0.5;
+    background: linear-gradient(270deg, #00fff7, #ff00ea, #ffe600, #00ff2a, #00fff7);
+    background-size: 400% 400%;
+    color: #fff;
+    animation: neon-gradient 6s ease-in-out infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    }
+
+  @keyframes neon-gradient {
+   0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
-        .logo {
-            margin: 10px auto 30px auto; /* 10px odstępu od menu, 30px pod logo */
-            text-align: center;
-        }
-        .logo img {
-            max-width: 660px; /* 300% poprzedniego rozmiaru */
-            width: 100%;
-            height: auto;
-            display: inline-block;
-        }
 
-        .neon-img {
-       width: 48%; /* szerokość PNGE */
-       height: auto;
-       display: block;
-       margin: 0 auto;
-      }
-        .rainbow-border {
-            border: 3px solid transparent;
-            border-radius: 12px;
-            padding: 4px;
-            background: linear-gradient(270deg, 
-                rgba(255,0,0,0.75), 
-                rgba(255,153,0,0.75), 
-                rgba(255,238,0,0.75), 
-                rgba(51,255,0,0.75), 
-                rgba(0,255,238,0.75), 
-                rgba(0,102,255,0.75), 
-                rgba(204,0,255,0.75), 
-                rgba(255,0,0,0.75)
-            );
-            background-size: 1600% 1600%;
-            animation: rainbow 10s linear infinite;
-            box-sizing: border-box;
-            max-width: 1000px;
-            width: 48%;
-            height: auto;
-            margin: 0 auto;
-            display: inline-block;
-        }
-
-        @keyframes rainbow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-        .neon-bar {
-            width: 100%;
-            height: 190px; /* nowa wysokość paska */
-            background: rgba(0,0,0,0.85);
-            margin: 40px 0 0 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 0;
-            overflow: hidden;
-            padding: 0;
-        }
-        .neon-text {
-            font-size: 2.8rem;    /* większy tekst */
-            font-weight: 900;     /* grubszy tekst */
-            font-family: 'Arial', sans-serif;
-            letter-spacing: 1px;
-            opacity: 0.5;
-            background: linear-gradient(270deg, #00fff7, #ff00ea, #ffe600, #00ff2a, #00fff7);
-            background-size: 400% 400%;
-            color: #fff;
-            animation: neon-gradient 6s ease-in-out infinite;
-            /* Neonowy efekt bez rozmazania i bez tła */
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        @keyframes neon-gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .commission-title {
-            font-size: 3.2rem;      /* większy niż neonowy napis */
-            font-weight: 900;
-            font-family: 'Arial', sans-serif;
-            margin-top: 40px;
-            margin-bottom: 10px;
-            text-decoration: underline;
-            text-underline-offset: 10px; /* odstęp podkreślenia od tekstu */
-            color: #dbdbdb;
-            letter-spacing: 1px;
-        }
-        .gallery-container {
-            position: relative;
-            width: 100%;
-            max-width: 100vw;
-            height: 650px;
-            margin: 30px auto 0 auto;
-            overflow: hidden;
-        }
-        .gallery-track {
-            display: flex;
-            align-items: center;
-            height: 100%;
-            gap: 15px;
-            /* move entire duplicated track before restarting */
-            animation: scroll 15s linear infinite;
-        }
-        .gallery-image {
-            position: relative;
-            height: 650px;
-            width: auto;
-            /* remove min-width to let images size naturally */
-            display: flex;
-            align-items: flex-end;
-            justify-content: flex-start;
-            opacity: 1;
-            flex-shrink: 0;
-        }
-        .gallery-image img {
-            /* ograniczamy obrazek do dostępnego miejsca w kontenerze
-               zachowując oryginalne proporcje */
-            max-width: 100%;    /* nie szerszy niż rodzic */
-            max-height: 100%;   /* nie wyższy niż rodzic */
-            width: auto;
-            height: auto;
-            object-fit: contain;
-            display: block;
-        }
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            /* travel the full width (both copies) for a continuous loop */
-            100% { transform: translateX(-200%); }
-        }
-        /* hide old arrow classes just in case */
-        .gallery-arrow { display: none; }
-        .gallery-arrow.left, .gallery-arrow.right { display: none; }
-        .gallery-caption {
-            position: absolute;
-            left: 10px;
-            bottom: 10px;
-            color: #fff;
-            font-size: 20px;
-            line-height: 1.2;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-            text-align: left;
-            text-shadow: 0 0 4px #000;
-        }
-        .gallery-caption span:first-child {
-  font-size: 20px;
-  font-weight: bold;
+.commission-title {
+  font-size: 3.2rem;      /* większy niż neonowy napis */
+  font-weight: 900;
+  font-family: 'Arial', sans-serif;
+  margin-top: 40px;
+  margin-bottom: 10px;
   text-decoration: underline;
+  text-underline-offset: 10px; /* odstęp podkreślenia od tekstu */
+  color: #dbdbdb;
+  letter-spacing: 1px;
 }
 
-.gallery-caption span:last-child {
-  font-size: 14px;
-}
-        .gallery-image:hover img {
-            filter: brightness(70%);
-        }
-        .gallery-image:hover .gallery-caption {
-            opacity: 1;
-        }
+.gallery-container {
+ position: relative;
+ width: 100%;
+ max-width: 100vw;
+ height: 650px;
+ margin: 30px auto 0 auto;
+ overflow: hidden;
+  }
+  .gallery-track {
+   display: flex;
+   align-items: center;
+   height: 100%;
+   gap: 15px;
+   /* move entire duplicated track before restarting */
+   animation: scroll 15s linear infinite;
+   }
+  .gallery-image {
+    position: relative;
+    height: 650px;
+    width: auto;
+    /* remove min-width to let images size naturally */
+   display: flex;
+   align-items: flex-end;
+   justify-content: flex-start;
+   opacity: 1;
+   flex-shrink: 0;
+   }
+  .gallery-image img {
+    /* ograniczamy obrazek do dostępnego miejsca w kontenerze
+    zachowując oryginalne proporcje */
+    max-width: 100%;    /* nie szerszy niż rodzic */
+    max-height: 100%;   /* nie wyższy niż rodzic */
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+   }
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    /* travel the full width (both copies) for a continuous loop */
+    100% { transform: translateX(-200%); }
+   }
+    /* hide old arrow classes just in case */
+    .gallery-arrow { display: none; }
+    .gallery-arrow.left, .gallery-arrow.right { display: none; }
+  .gallery-caption {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    color: #fff;
+    font-size: 20px;
+    line-height: 1.2;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    text-align: left;
+    text-shadow: 0 0 4px #000;
+    }
+    .gallery-caption span:first-child {
+     font-size: 20px;
+     font-weight: bold;
+     text-decoration: underline;
+     }
+    .gallery-caption span:last-child {
+     font-size: 14px;
+     }
+  .gallery-image:hover img {
+    filter: brightness(70%);
+    }
+    .gallery-image:hover .gallery-caption {
+      opacity: 1;
+      }
  .gallery-hot-container {
   display: flex;
   justify-content: center;
@@ -216,7 +219,7 @@
   max-width: 1000px;  /* dopasowane do galerii Last commission */
   width: 100%;         /* pełna szerokość kontenera */
   flex-wrap: wrap;     /* łamanie wiersza przy braku miejsca */
-}
+ }
 
 .hot-item {
   flex: 1 1 calc(32% - 20px); /* 3 elementy w rzędzie, minus gap */
