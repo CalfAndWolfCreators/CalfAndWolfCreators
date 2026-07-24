@@ -10,42 +10,43 @@
             color: #dbdbdb; /* domyślny kolor tekstu */
         }
         .menu {
-            text-align: center; /* wyśrodkowanie przycisków */
+            text-align: center;
             margin-bottom: 20px;
         }
         .przycisk {
-  height: 40px;
-  line-height: 40px;
-  padding: 0 25px;
-  background-color: #266b3d;
-  color: #fff;
-  border: none;
-  border-radius: 0;
-  margin: 5px;
-  font-size: 18px;
-  cursor: pointer;
-  display: inline-block;
-  vertical-align: middle;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  transition: background 0.3s;
-  text-decoration: none;   /* ⬅ usuwa podkreślenie */
-  font-weight: bold;       /* ⬅ pogrubienie */
-  text-align: center;      /* ⬅ poziome wyśrodkowanie */
+            height: 40px;
+            line-height: 40px;
+            padding: 0 25px;
+            background-color: #266b3d;
+            color: #fff;
+            border: none;
+            border-radius: 0;
+            margin: 5px;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: middle;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: background 0.3s;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
         }
         .przycisk:hover {
             background-color: #3a7d44;
         }
         .przycisk.active {
-            background-color: #dbdbdb; /* jaśniejszy kolor */
-            color: #103A0D;            /* zielony jak tło */
-            font-weight: bold;         /* opcjonalnie pogrubienie */
+            background-color: #dbdbdb;
+            color: #103A0D;
+            font-weight: bold;
         }
 
         a.przycisk {
-    display: inline-block;
-    text-decoration: none;
-    text-align: center;
-}
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+        }
         .logo {
             margin: 10px auto 30px auto; /* 10px odstępu od menu, 30px pod logo */
             text-align: center;
@@ -73,12 +74,12 @@
 }
 
 .box-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  max-width: 1500px;
- margin: 0 auto 30px auto;
-  justify-items: center;
-  margin-bottom: 40px; /* odstęp między rzędami */
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ max-width: 1500px;
+ margin: 0 auto; 
+ justify-items: center;
+ margin-bottom: 30px;
 }
 
 .box-container-2 {
@@ -96,7 +97,6 @@
   min-height: 515px;
   padding: 20px;
   color: #dbdbdb;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
   max-width: 400px; /* dodaj max szerokość, by miały stałą szerokość */
 }
 
@@ -390,7 +390,7 @@
     </ul>
   </div>
 
-  <div class="price-box" style="font-size: 26px;">
+  <div class="price-box" style="font-size: 26px;" margin-right: 15px;>
     <h3 style="font-size: 28px; margin-bottom: 20px;">Hand paws</h3>
     <p style="font-size: 21px; text-decoration: underline; font-weight: bold; margin-bottom: 15px; text-align: center;">
       Starts at 100€ (2 Fur colors, 2 Pads colors & 4 Fingers)
@@ -650,9 +650,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
